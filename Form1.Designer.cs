@@ -37,6 +37,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.listView2 = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Solve = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -45,8 +46,11 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.label2 = new System.Windows.Forms.Label();
-            this.Solve = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -59,10 +63,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Honeydew;
-            this.pictureBox1.Location = new System.Drawing.Point(285, 29);
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(285, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(678, 564);
+            this.pictureBox1.Size = new System.Drawing.Size(678, 637);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -112,7 +117,7 @@
             this.cancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cancel.BackColor = System.Drawing.Color.DarkOrange;
-            this.cancel.Location = new System.Drawing.Point(0, 564);
+            this.cancel.Location = new System.Drawing.Point(0, 600);
             this.cancel.Name = "cancel";
             this.cancel.Size = new System.Drawing.Size(285, 29);
             this.cancel.TabIndex = 8;
@@ -134,9 +139,6 @@
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
-            //this.listView1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ListView1_ItemCheck);
-            //this.listView1.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.ListView1_ItemChecked);
-            //this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ListView1_ItemSelectionChanged);
             // 
             // listView2
             // 
@@ -149,6 +151,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.Solve);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cancel);
             this.panel1.Controls.Add(this.toolStrip1);
@@ -161,8 +164,23 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(285, 593);
+            this.panel1.Size = new System.Drawing.Size(285, 637);
             this.panel1.TabIndex = 13;
+            // 
+            // Solve
+            // 
+            this.Solve.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Solve.BackColor = System.Drawing.Color.DarkOrange;
+            this.Solve.Location = new System.Drawing.Point(0, 570);
+            this.Solve.Name = "Solve";
+            this.Solve.Size = new System.Drawing.Size(285, 29);
+            this.Solve.TabIndex = 14;
+            this.Solve.Text = "Решить задачу";
+            this.Solve.UseVisualStyleBackColor = false;
+            this.Solve.Click += new System.EventHandler(this.Solve_Click);
+            this.Solve.MouseEnter += new System.EventHandler(this.Solve_MouseEnter);
+            this.Solve.MouseLeave += new System.EventHandler(this.Solve_MouseLeave);
             // 
             // label1
             // 
@@ -239,42 +257,74 @@
             this.label2.Text = "МНОЖЕСТВО ТОЧЕК";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Solve
-            // 
-            this.Solve.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Solve.BackColor = System.Drawing.Color.DarkOrange;
-            this.Solve.Location = new System.Drawing.Point(0, 0);
-            this.Solve.Name = "Solve";
-            this.Solve.Size = new System.Drawing.Size(678, 29);
-            this.Solve.TabIndex = 14;
-            this.Solve.Text = "Решить задачу";
-            this.Solve.UseVisualStyleBackColor = false;
-            this.Solve.Click += new System.EventHandler(this.Solve_Click);
-            this.Solve.MouseEnter += new System.EventHandler(this.Solve_MouseEnter);
-            this.Solve.MouseLeave += new System.EventHandler(this.Solve_MouseLeave);
-            // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.Solve);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(285, 0);
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.Orange;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Location = new System.Drawing.Point(868, 543);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(678, 29);
-            this.panel2.TabIndex = 15;
+            this.panel2.Size = new System.Drawing.Size(95, 94);
+            this.panel2.TabIndex = 14;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(54, 32);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(37, 25);
+            this.button4.TabIndex = 16;
+            this.button4.Text = "->";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(-2, 31);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(37, 25);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "<---";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(34, 43);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(22, 49);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "|v";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(34, -2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(22, 49);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "^|";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Aquamarine;
-            this.ClientSize = new System.Drawing.Size(963, 593);
+            this.ClientSize = new System.Drawing.Size(963, 637);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Привет от МТ3-22:)";
-            //this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
+            this.MaximumSizeChanged += new System.EventHandler(this.Form1_MaximumSizeChanged);
+            this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -297,7 +347,6 @@
         private Panel panel1;
         private Label label2;
         private Button Solve;
-        private Panel panel2;
         private ToolStrip toolStrip1;
         private ToolStripDropDownButton toolStripDropDownButton1;
         private ToolStripMenuItem authorInfoToolStripMenuItem;
@@ -306,8 +355,16 @@
         private ToolStripLabel toolStripLabel1;
         private Label label1;
         private ListView listView1;
-        private Dictionary<ListViewItem, ColoredPoint> coloredPoints;
-        private Dictionary<ListViewItem, Circle> coloredCircles;
+        private Circle solution;
+        private int diffx, diffy;
+        private double scale;
+        private Panel panel2;
+        private Button button1;
+        private Button button4;
+        private Button button3;
+        private Button button2;
+        //private Dictionary<ListViewItem, ColoredPoint> coloredPoints;
+        //private Dictionary<ListViewItem, Circle> coloredCircles;
         //private PointWith
     }
 }

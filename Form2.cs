@@ -30,22 +30,25 @@ namespace WinFormsApp3
                     if (nums.Length != 2)
                         throw new Exception("Неправильное число символов");
 
-                    float[] floats = new float[nums.Length];
+                    int[] coords = new int[nums.Length];
 
                     for (int i = 0; i < nums.Length; i++)
                     {
-                        floats[i] = Convert.ToSingle(nums[i].Trim(), new CultureInfo("en-US"));
+                        if (int.TryParse(nums[i].Trim(), out coords[i]) == false)
+                        {
+                            throw new Exception("Ошибка ввода");
+                        }
                     }
 
                     parent.SaveToOldItems();
                     ListView.ListViewItemCollection items = parent.GetListViewCollection();
                     foreach (ListViewItem item in items)
                     {
-                        if (item.Text == $"{floats[0]}; {floats[1]}")
+                        if (item.Text == $"{coords[0]}; {coords[1]}")
                             throw new Exception("Точка была уже добавлена");
                     }
 
-                    parent.AddToListView($"{floats[0]}; {floats[1]}");
+                    parent.AddToListView($"{coords[0]}; {coords[1]}");
                 }
                 catch (Exception ex)
                 {

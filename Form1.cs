@@ -1,3 +1,5 @@
+using System.Drawing;
+
 namespace WinFormsApp3
 {
     public partial class Form1 : Form
@@ -6,6 +8,8 @@ namespace WinFormsApp3
         {
             InitializeComponent();
             oldItems = new();
+            (diffx, diffy) = (0, 0);
+            scale = 1;
         }
 
         internal void SaveToOldItems()
@@ -17,18 +21,18 @@ namespace WinFormsApp3
             }
         }
 
-        private void ReDrawPoints(Color color)
+        private void ReDrawPoints(Color color, int diffX = 0, int diffY = 0, double scale = 1)
         {
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.Honeydew);
-            Painter.DrawPoints(g, ListViewParser.CoordsParser(listView1), color);
+            Painter.DrawPoints(g, ListViewParser.CoordsParser(listView1), color, diffX, diffY, scale);
             listView2.Clear();
         }
 
-        private void DrawPoints(Color color)
+        private void DrawPoints(Color color, int diffX = 0, int diffY = 0, double scale = 1)
         {
             Graphics g = pictureBox1.CreateGraphics();
-            Painter.DrawPoints(g, ListViewParser.CoordsParser(listView1), color);
+            Painter.DrawPoints(g, ListViewParser.CoordsParser(listView1), color, diffX, diffY, scale);
         }
 
         internal void AddToListView(string text)
@@ -86,6 +90,8 @@ namespace WinFormsApp3
         {
             Form2 input = new(this);
             input.ShowDialog();
+            ReDrawPoints(Color.Blue, diffx, diffy);
+            solution = null;
         }
 
         private void Clear1_Click(object sender, EventArgs e)
@@ -100,6 +106,7 @@ namespace WinFormsApp3
                     SaveToOldItems();
                     listView1.Items.Clear();
                     ReDrawPoints(Color.Blue);
+                    solution = null;
                 }
             }
             else
@@ -129,6 +136,7 @@ namespace WinFormsApp3
                 }
 
                 ReDrawPoints(Color.Blue);
+                solution = null;
             }
             else
             {
@@ -142,31 +150,39 @@ namespace WinFormsApp3
             try
             {
                 Graphics g = pictureBox1.CreateGraphics();
-                g.Clear(Color.Honeydew);
+                //g.Clear(Color.Honeydew);
 
                 List<Point> points = ListViewParser.CoordsParser(listView1);
 
-                Painter.DrawPoints(g, points, Color.Blue);
-                Circle circle = Minimizer.FindMinRadius(points, Minimizer.FindNearestPoint(points));
-                Painter.DrawCirlce(g, circle, Color.Red);
+                //Painter.DrawPoints(g, points, Color.Blue);
+                solution = Minimizer.FindMinRadius(points, Minimizer.FindNearestPoint(points));
+                //Painter.DrawCirlce(g, circle, Color.Red);
                 
-                listView2.Clear();
-                listView2.Items.Add(new ListViewItem($"Радиус: {circle.Radius}"));
-                listView2.Items.Add(new ListViewItem($"Центр: {circle.Center.X}; {circle.Center.Y}"));
-                int i = 0;
+                //solution = circle;
+                //int i = 0;
 
-                if (circle.Points != null)
+                //if (circle.Center + circle.)
+                var (cx, cy) = (pictureBox1.Width / 2, pictureBox1.Height / 2);
+
+                (diffx, diffy) = (-solution.Center.X + cx, -solution.Center.Y + cy);
+
+                if (cx + solution.Radius > pictureBox1.Width ||
+                    cx - solution.Radius < 0 || cy - solution.Radius < 0 ||
+                    cy + solution.Radius > pictureBox1.Height)
                 {
-                    foreach (Point point in circle.Points)
-                    {
-                        Painter.DrawPoint(g, point, Color.OrangeRed);
-                        listView2.Items.Add(new ListViewItem($"{i++ + 1}-я точка окружности: {point.X}; {point.Y}"));
-                    }
+                    scale = Convert.ToDouble(solution.Radius) / Math.Max(pictureBox1.Height, pictureBox1.Width); 
                 }
                 else
                 {
-                    throw new Exception("Нет окружности для отрисовки");
+                    scale = 1;
                 }
+
+                DrawScene();
+
+                //ReDrawPoints(Color.Blue, diffx, diffy);
+                //DrawCircleIfItExists();
+                //Painter.DrawCirlce(g, circle, Color.Red, -diffx, -diffy);
+
                 
             }
             catch (Exception ex) 
@@ -229,11 +245,77 @@ namespace WinFormsApp3
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             SaveToOldItems();
-            Graphics g = pictureBox1.CreateGraphics();
-            Point point = new(e.X, e.Y);
-            listView1.Items.Add($"{e.X}; {e.Y}");
-            Painter.DrawPoint(g, point, Color.Blue);
+            //Graphics g = pictureBox1.CreateGraphics();
+            //Point point = new(e.X, e.Y);
+            listView1.Items.Add($"{Convert.ToSingle((e.X  - diffx) / scale)}; {Convert.ToSingle((e.Y - diffy) / scale)}");
+            ReDrawPoints(Color.Blue, diffx, diffy, scale);
+            solution = null;
         }
+
+
+        private void DrawScene()
+        {
+            ReDrawPoints(Color.Blue, diffx, diffy, scale);
+            DrawCircleIfItExists();
+        }
+        private void DrawCircleIfItExists()
+        {
+            if (solution != null)
+            {
+                Graphics g = pictureBox1.CreateGraphics();
+                listView2.Items.Add(new ListViewItem($"Радиус: {solution.Radius}"));
+                listView2.Items.Add(new ListViewItem($"Центр: {solution.Center.X}; {solution.Center.Y}"));
+
+                int i = 1;
+                Painter.DrawCirlce(g, solution, Color.OrangeRed, diffx, diffy, scale);
+                foreach (Point point in solution.Points)
+                {
+                    Painter.DrawPoint(g, point, Color.OrangeRed, diffx, diffy, scale);
+                    listView2.Items.Add(new ListViewItem($"{i++}-я точка окружности: {point.X}; {point.Y}"));
+                }
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            diffy += 10;
+            DrawScene();
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            diffy -= 10;
+            DrawScene();
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            diffx += 10;
+            DrawScene();
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            diffx -= 10;
+            DrawScene();
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            DrawScene();
+        }
+
+        private void Form1_ResizeEnd(object sender, EventArgs e)
+        {
+            DrawScene();
+        }
+
+        private void Form1_MaximumSizeChanged(object sender, EventArgs e)
+        {
+            DrawScene();
+        }
+
+
 
         //private void HighlightPoints()
         //{
