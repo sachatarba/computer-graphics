@@ -57,28 +57,6 @@ namespace CG_Lab2
 
             Geometry.RotateLines(linesCircuit, angle);
             Geometry.RotateLines(linesSkeleton, angle);
-            //double dxRadians = dx * Math.PI / 180;
-
-            //for (int i = 0; i < linesCircuit.Count; ++i)
-            //{
-            //    var (newX1, newY1) = (Convert.ToInt32((Math.Cos(dxRadians) * linesCircuit[i].Item1.X - Math.Sin(dxRadians) * linesCircuit[i].Item1.Y)),
-            //         Convert.ToInt32(Math.Sin(dxRadians) * linesCircuit[i].Item1.X + (Math.Cos(dxRadians) * linesCircuit[i].Item1.Y))); ;
-            //    var (newX2, newY2) = (Convert.ToInt32(Math.Cos(dxRadians) * linesCircuit[i].Item2.X - Math.Sin(dxRadians) * linesCircuit[i].Item2.Y),
-            //        Convert.ToInt32(Math.Sin(dxRadians) * linesCircuit[i].Item2.X + (Math.Cos(dxRadians) * linesCircuit[i].Item2.Y)));
-
-            //    linesCircuit[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
-            //}
-
-            //for (int i = 0; i < linesSkeleton.Count; ++i)
-            //{
-            //    var (newX1, newY1) = (Convert.ToInt32((Math.Cos(dxRadians) * linesSkeleton[i].Item1.X - Math.Sin(dxRadians) * linesSkeleton[i].Item1.Y)),
-            //         Convert.ToInt32(Math.Sin(dxRadians) * linesSkeleton[i].Item1.X + (Math.Cos(dxRadians) * linesSkeleton[i].Item1.Y))); ;
-            //    var (newX2, newY2) = (Convert.ToInt32(Math.Cos(dxRadians) * linesSkeleton[i].Item2.X - Math.Sin(dxRadians) * linesSkeleton[i].Item2.Y),
-            //         Convert.ToInt32(Math.Sin(dxRadians) * linesSkeleton[i].Item2.X + (Math.Cos(dxRadians) * linesSkeleton[i].Item2.Y)));
-
-            //    linesSkeleton[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
-            //}
-
 
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);
@@ -106,21 +84,8 @@ namespace CG_Lab2
                 return;
             }
 
-            for (int i = 0; i < linesCircuit.Count; ++i)
-            {
-                var (newX1, newY1) = (linesCircuit[i].Item1.X + dx, linesCircuit[i].Item1.Y + dy);
-                var (newX2, newY2) = (linesCircuit[i].Item2.X + dx, linesCircuit[i].Item2.Y + dy);
-
-                linesCircuit[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
-            }
-
-            for (int i = 0; i < linesSkeleton.Count; ++i)
-            {
-                var (newX1, newY1) = (linesSkeleton[i].Item1.X + dx, linesSkeleton[i].Item1.Y + dy);
-                var (newX2, newY2) = (linesSkeleton[i].Item2.X + dx, linesSkeleton[i].Item2.Y + dy);
-
-                linesSkeleton[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
-            }
+            Geometry.MoveLines(linesCircuit, dx, dy);
+            Geometry.MoveLines(linesSkeleton, dx, dy);
 
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);

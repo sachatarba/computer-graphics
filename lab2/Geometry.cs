@@ -24,5 +24,16 @@ namespace CG_Lab2.lab2
                 lines[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
             }
         }
+
+        public static void MoveLines(List<(Point, Point)> lines, int dx, int dy)
+        {
+            for (int i = 0; i < lines.Count; ++i)
+            {
+                var (newX1, newY1) = (lines[i].Item1.X + dx, lines[i].Item1.Y + dy);
+                var (newX2, newY2) = (lines[i].Item2.X + dx, lines[i].Item2.Y + dy);
+
+                lines[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
+            }
+        }
     }
 }
