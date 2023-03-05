@@ -159,5 +159,53 @@ namespace CG_Lab2
             }
 
         }
+
+        private void Scale_Click(object sender, EventArgs e)
+        {
+            if (ScaleX.Text.Length == 0 || ScaleY.Text.Length == 0)
+            {
+                MessageBox.Show("Введите коэффициенты маштабирования", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!double.TryParse(ScaleX.Text, out double dx) || !double.TryParse(ScaleY.Text, out double dy))
+            {
+                MessageBox.Show("Неверный ввода коэффициенты маштабирования", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            for (int i = 0; i < linesCircuit.Count; ++i)
+            {
+                var (newX1, newY1) = (Convert.ToInt32(linesCircuit[i].Item1.X * dx), Convert.ToInt32(linesCircuit[i].Item1.Y * dy));
+                var (newX2, newY2) = (Convert.ToInt32(linesCircuit[i].Item2.X * dx), Convert.ToInt32(linesCircuit[i].Item2.Y * dy));
+
+                linesCircuit[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
+            }
+
+            for (int i = 0; i < linesSkeleton.Count; ++i)
+            {
+                var (newX1, newY1) = (Convert.ToInt32(linesSkeleton[i].Item1.X * dx), Convert.ToInt32(linesSkeleton[i].Item1.Y * dy));
+                var (newX2, newY2) = (Convert.ToInt32(linesSkeleton[i].Item2.X * dx), Convert.ToInt32(linesSkeleton[i].Item2.Y * dy));
+
+                linesSkeleton[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
+            }
+
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.White);
+            Pen pen = new Pen(Color.Black, 5);
+            //MessageBox.Show($"{lines.Count}");
+            foreach (var line in linesCircuit)
+            {
+                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
+                g.DrawLine(pen, line.Item1, line.Item2);
+            }
+
+            pen = new Pen(Color.Black, 3);
+            foreach (var line in linesSkeleton)
+            {
+                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
+                g.DrawLine(pen, line.Item1, line.Item2);
+            }
+        }
     }
 }

@@ -38,8 +38,8 @@ namespace CG_Lab2
             this.MoveY = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.ScaleY = new System.Windows.Forms.TextBox();
+            this.ScaleX = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -114,19 +114,19 @@ namespace CG_Lab2
             this.label3.Text = "OX";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox3
+            // ScaleY
             // 
-            this.textBox3.Location = new System.Drawing.Point(67, 131);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(44, 22);
-            this.textBox3.TabIndex = 10;
+            this.ScaleY.Location = new System.Drawing.Point(67, 131);
+            this.ScaleY.Name = "ScaleY";
+            this.ScaleY.Size = new System.Drawing.Size(44, 22);
+            this.ScaleY.TabIndex = 10;
             // 
-            // textBox4
+            // ScaleX
             // 
-            this.textBox4.Location = new System.Drawing.Point(8, 131);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(44, 22);
-            this.textBox4.TabIndex = 9;
+            this.ScaleX.Location = new System.Drawing.Point(8, 131);
+            this.ScaleX.Name = "ScaleX";
+            this.ScaleX.Size = new System.Drawing.Size(44, 22);
+            this.ScaleX.TabIndex = 9;
             // 
             // label4
             // 
@@ -145,6 +145,7 @@ namespace CG_Lab2
             this.button2.TabIndex = 7;
             this.button2.Text = "Масш";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Scale_Click);
             // 
             // label5
             // 
@@ -210,8 +211,8 @@ namespace CG_Lab2
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.ScaleY);
+            this.Controls.Add(this.ScaleX);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
@@ -238,8 +239,8 @@ namespace CG_Lab2
         private System.Windows.Forms.TextBox MoveY;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox ScaleY;
+        private System.Windows.Forms.TextBox ScaleX;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
