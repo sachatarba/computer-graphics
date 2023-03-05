@@ -81,6 +81,15 @@ namespace CG_Lab2
 
         }
 
+        private void DrawScene()
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.White);
+
+            Painter.DrawLines(g, linesCircuit, Color.White);
+            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
+        }
+
         private void Move_Click(object sender, EventArgs e)
         {
             if (MoveX.Text.Length == 0 || MoveY.Text.Length == 0)
@@ -91,7 +100,7 @@ namespace CG_Lab2
 
             if (!int.TryParse(MoveX.Text, out int dx) || !int.TryParse(MoveY.Text, out int dy))
             {
-                MessageBox.Show("Неверный ввода смещения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Неверный ввод смещения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -102,11 +111,7 @@ namespace CG_Lab2
             Geometry.MoveLines(linesCircuit, dx, dy);
             Geometry.MoveLines(linesSkeleton, dx, dy);
 
-            Graphics g = pictureBox1.CreateGraphics();
-            g.Clear(Color.White);
-
-            Painter.DrawLines(g, linesCircuit, Color.White);
-            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
+            DrawScene();
         }
 
         private void Scale_Click(object sender, EventArgs e)
@@ -119,7 +124,7 @@ namespace CG_Lab2
 
             if (!double.TryParse(ScaleX.Text, out double scaleX) || !double.TryParse(ScaleY.Text, out double scaleY))
             {
-                MessageBox.Show("Неверный ввода коэффициенты маштабирования", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Неверный ввод коэффициенты маштабирования", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -130,11 +135,7 @@ namespace CG_Lab2
             Geometry.ScaleLines(linesCircuit, scaleX, scaleY);
             Geometry.ScaleLines(linesSkeleton, scaleX, scaleY);
 
-            Graphics g = pictureBox1.CreateGraphics();
-            g.Clear(Color.White);
-
-            Painter.DrawLines(g, linesCircuit, Color.White);
-            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
+            DrawScene();
         }
 
         private void Cancel_Click(object sender, EventArgs e)
@@ -149,11 +150,70 @@ namespace CG_Lab2
             linesCircuit = new List<(Point, Point)>(oldCircuits.Pop());
             linesSkeleton = new List<(Point, Point)>(oldSkeletons.Pop());
 
-            Graphics g = pictureBox1.CreateGraphics();
-            g.Clear(Color.White);
+            DrawScene();     
+        }
 
-            Painter.DrawLines(g, linesCircuit, Color.White);
-            Painter.DrawLines(g, linesSkeleton, Color.White, 3);      
+        private void ButtonDown_Click(object sender, EventArgs e)
+        {
+            const int dy = -10;
+            const int dx = 0;
+
+            Geometry.MoveLines(linesCircuit, dx, dy);
+            Geometry.MoveLines(linesSkeleton, dx, dy);
+
+            DrawScene();
+        }
+
+        private void ButttonUp_Click(object sender, EventArgs e)
+        {
+            const int dy = 10;
+            const int dx = 0;
+
+            Geometry.MoveLines(linesCircuit, dx, dy);
+            Geometry.MoveLines(linesSkeleton, dx, dy);
+
+            DrawScene();
+        }
+
+        private void ButtonLeft_Click(object sender, EventArgs e)
+        {
+            const int dy = 0;
+            const int dx = -10;
+
+            Geometry.MoveLines(linesCircuit, dx, dy);
+            Geometry.MoveLines(linesSkeleton, dx, dy);
+
+            DrawScene();
+        }
+
+        private void ButtonRight_Click(object sender, EventArgs e)
+        {
+            const int dy = 0;
+            const int dx = 10;
+
+            Geometry.MoveLines(linesCircuit, dx, dy);
+            Geometry.MoveLines(linesSkeleton, dx, dy);
+
+            DrawScene();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Нарисовать исходный рисунок, затем его переместить,\r\n\r\nпромасштабировать, повернуть",
+                "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Тарба Александр ИУ7-45Б",
+                "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
