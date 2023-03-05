@@ -1,4 +1,7 @@
-﻿namespace CG_Lab2
+﻿using System.Collections.Generic;
+using System.Drawing;
+
+namespace CG_Lab2
 {
     partial class Form1
     {
@@ -40,8 +43,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.rotateY = new System.Windows.Forms.TextBox();
+            this.rotateX = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -151,19 +154,19 @@
             this.label5.Text = "OX";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox5
+            // rotateY
             // 
-            this.textBox5.Location = new System.Drawing.Point(67, 223);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(44, 22);
-            this.textBox5.TabIndex = 15;
+            this.rotateY.Location = new System.Drawing.Point(67, 223);
+            this.rotateY.Name = "rotateY";
+            this.rotateY.Size = new System.Drawing.Size(44, 22);
+            this.rotateY.TabIndex = 15;
             // 
-            // textBox6
+            // rotateX
             // 
-            this.textBox6.Location = new System.Drawing.Point(8, 223);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(44, 22);
-            this.textBox6.TabIndex = 14;
+            this.rotateX.Location = new System.Drawing.Point(8, 223);
+            this.rotateX.Name = "rotateX";
+            this.rotateX.Size = new System.Drawing.Size(44, 22);
+            this.rotateX.TabIndex = 14;
             // 
             // label6
             // 
@@ -182,6 +185,7 @@
             this.button3.TabIndex = 12;
             this.button3.Text = "Поворот";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -191,7 +195,7 @@
             this.button4.TabIndex = 17;
             this.button4.Text = "Загрузить";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Load_Click);
             // 
             // Form1
             // 
@@ -200,8 +204,8 @@
             this.ClientSize = new System.Drawing.Size(846, 554);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.rotateY);
+            this.Controls.Add(this.rotateX);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label3);
@@ -217,6 +221,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -237,11 +242,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox rotateY;
+        private System.Windows.Forms.TextBox rotateX;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        
+        private List<(Point, Point)> linesCircuit;
+        private List<(Point, Point)> linesSkeleton;
     }
 }
 

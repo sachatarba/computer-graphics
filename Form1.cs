@@ -28,27 +28,80 @@ namespace CG_Lab2
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Load_Click(object sender, EventArgs e)
         {
-            List<(Point, Point)> lines = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\Заяц.txt");
+            linesCircuit = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\Заяц.txt");
 
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);
             Pen pen = new Pen(Color.Black, 5);
             //MessageBox.Show($"{lines.Count}");
-            foreach (var line in lines)
+            foreach (var line in linesCircuit)
             {
                 //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
                 g.DrawLine(pen, line.Item1, line.Item2);
             }
 
             pen = new Pen(Color.Black, 3);
-            lines = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\скелет.txt");
-            foreach (var line in lines)
+            linesSkeleton = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\скелет.txt");
+            foreach (var line in linesSkeleton)
             {
                 //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
                 g.DrawLine(pen, line.Item1, line.Item2);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(rotateX.Text, out int dx) || !int.TryParse(rotateY.Text, out int dy))
+            {
+                MessageBox.Show("Неверный ввод углов поворота", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            double dxRadians = dx * Math.PI / 180;
+           
+            for (int i = 0; i < linesCircuit.Count; ++i)
+            {
+                var (newX1, newY1) = (Convert.ToInt32((Math.Cos(dxRadians) * linesCircuit[i].Item1.X - Math.Sin(dxRadians) * linesCircuit[i].Item1.Y)),
+                     Convert.ToInt32(Math.Sin(dxRadians) * linesCircuit[i].Item1.X + (Math.Cos(dxRadians) * linesCircuit[i].Item1.Y))); ;
+               var (newX2, newY2) = (Convert.ToInt32(Math.Cos(dxRadians) * linesCircuit[i].Item2.X - Math.Sin(dxRadians) * linesCircuit[i].Item2.Y),
+                    Convert.ToInt32(Math.Sin(dxRadians) * linesCircuit[i].Item2.X + (Math.Cos(dxRadians) * linesCircuit[i].Item2.Y)));
+
+                linesCircuit[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
+            }
+
+            for (int i = 0; i < linesSkeleton.Count; ++i)
+            {
+                var (newX1, newY1) = (Convert.ToInt32((Math.Cos(dxRadians) * linesSkeleton[i].Item1.X - Math.Sin(dxRadians) * linesSkeleton[i].Item1.Y)),
+                     Convert.ToInt32(Math.Sin(dxRadians) * linesSkeleton[i].Item1.X + (Math.Cos(dxRadians) * linesSkeleton[i].Item1.Y))); ;
+                var (newX2, newY2) = (Convert.ToInt32(Math.Cos(dxRadians) * linesSkeleton[i].Item2.X - Math.Sin(dxRadians) * linesSkeleton[i].Item2.Y),
+                     Convert.ToInt32(Math.Sin(dxRadians) * linesSkeleton[i].Item2.X + (Math.Cos(dxRadians) * linesSkeleton[i].Item2.Y)));
+
+                linesSkeleton[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
+            }
+
+
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.White);
+            Pen pen = new Pen(Color.Black, 5);
+            //MessageBox.Show($"{lines.Count}");
+            foreach (var line in linesCircuit)
+            {
+                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
+                g.DrawLine(pen, line.Item1, line.Item2);
+            }
+
+            pen = new Pen(Color.Black, 3);
+            foreach (var line in linesSkeleton)
+            {
+                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
+                g.DrawLine(pen, line.Item1, line.Item2);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
