@@ -53,9 +53,16 @@ namespace CG_Lab2
 
         private void Rotate_Click(object sender, EventArgs e)
         {
+            if (rotateX.Text.Length == 0)
+            {
+                MessageBox.Show("Введите угол поворота", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
             if (!int.TryParse(rotateX.Text, out int dx))
             {
                 MessageBox.Show("Неверный ввод угла поворота", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             double dxRadians = dx * Math.PI / 180;
@@ -64,7 +71,7 @@ namespace CG_Lab2
             {
                 var (newX1, newY1) = (Convert.ToInt32((Math.Cos(dxRadians) * linesCircuit[i].Item1.X - Math.Sin(dxRadians) * linesCircuit[i].Item1.Y)),
                      Convert.ToInt32(Math.Sin(dxRadians) * linesCircuit[i].Item1.X + (Math.Cos(dxRadians) * linesCircuit[i].Item1.Y))); ;
-               var (newX2, newY2) = (Convert.ToInt32(Math.Cos(dxRadians) * linesCircuit[i].Item2.X - Math.Sin(dxRadians) * linesCircuit[i].Item2.Y),
+                var (newX2, newY2) = (Convert.ToInt32(Math.Cos(dxRadians) * linesCircuit[i].Item2.X - Math.Sin(dxRadians) * linesCircuit[i].Item2.Y),
                     Convert.ToInt32(Math.Sin(dxRadians) * linesCircuit[i].Item2.X + (Math.Cos(dxRadians) * linesCircuit[i].Item2.Y)));
 
                 linesCircuit[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
@@ -104,8 +111,52 @@ namespace CG_Lab2
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Move_Click(object sender, EventArgs e)
         {
+            if (MoveX.Text.Length == 0 || MoveY.Text.Length == 0)
+            {
+                MessageBox.Show("Введите смещение", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!int.TryParse(MoveX.Text, out int dx) || !int.TryParse(MoveY.Text, out int dy))
+            {
+                MessageBox.Show("Неверный ввода смещения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            for (int i = 0; i < linesCircuit.Count; ++i)
+            {
+                var (newX1, newY1) = (linesCircuit[i].Item1.X + dx, linesCircuit[i].Item1.Y + dy);
+                var (newX2, newY2) = (linesCircuit[i].Item2.X + dx, linesCircuit[i].Item2.Y + dy);
+
+                linesCircuit[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
+            }
+
+            for (int i = 0; i < linesSkeleton.Count; ++i)
+            {
+                var (newX1, newY1) = (linesSkeleton[i].Item1.X + dx, linesSkeleton[i].Item1.Y + dy);
+                var (newX2, newY2) = (linesSkeleton[i].Item2.X + dx, linesSkeleton[i].Item2.Y + dy);
+
+                linesSkeleton[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
+            }
+
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.White);
+            Pen pen = new Pen(Color.Black, 5);
+            //MessageBox.Show($"{lines.Count}");
+            foreach (var line in linesCircuit)
+            {
+                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
+                g.DrawLine(pen, line.Item1, line.Item2);
+            }
+
+            pen = new Pen(Color.Black, 3);
+            foreach (var line in linesSkeleton)
+            {
+                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
+                g.DrawLine(pen, line.Item1, line.Item2);
+            }
 
         }
     }
