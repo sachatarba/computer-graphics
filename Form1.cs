@@ -51,11 +51,11 @@ namespace CG_Lab2
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Rotate_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(rotateX.Text, out int dx) || !int.TryParse(rotateY.Text, out int dy))
+            if (!int.TryParse(rotateX.Text, out int dx))
             {
-                MessageBox.Show("Неверный ввод углов поворота", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Неверный ввод угла поворота", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             double dxRadians = dx * Math.PI / 180;
@@ -100,6 +100,11 @@ namespace CG_Lab2
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
