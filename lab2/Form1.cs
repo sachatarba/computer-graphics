@@ -49,33 +49,35 @@ namespace CG_Lab2
                 return;
             }
             
-            if (!int.TryParse(rotateX.Text, out int dx))
+            if (!int.TryParse(rotateX.Text, out int angle))
             {
                 MessageBox.Show("Неверный ввод угла поворота", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            double dxRadians = dx * Math.PI / 180;
-           
-            for (int i = 0; i < linesCircuit.Count; ++i)
-            {
-                var (newX1, newY1) = (Convert.ToInt32((Math.Cos(dxRadians) * linesCircuit[i].Item1.X - Math.Sin(dxRadians) * linesCircuit[i].Item1.Y)),
-                     Convert.ToInt32(Math.Sin(dxRadians) * linesCircuit[i].Item1.X + (Math.Cos(dxRadians) * linesCircuit[i].Item1.Y))); ;
-                var (newX2, newY2) = (Convert.ToInt32(Math.Cos(dxRadians) * linesCircuit[i].Item2.X - Math.Sin(dxRadians) * linesCircuit[i].Item2.Y),
-                    Convert.ToInt32(Math.Sin(dxRadians) * linesCircuit[i].Item2.X + (Math.Cos(dxRadians) * linesCircuit[i].Item2.Y)));
+            Geometry.RotateLines(linesCircuit, angle);
+            Geometry.RotateLines(linesSkeleton, angle);
+            //double dxRadians = dx * Math.PI / 180;
 
-                linesCircuit[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
-            }
+            //for (int i = 0; i < linesCircuit.Count; ++i)
+            //{
+            //    var (newX1, newY1) = (Convert.ToInt32((Math.Cos(dxRadians) * linesCircuit[i].Item1.X - Math.Sin(dxRadians) * linesCircuit[i].Item1.Y)),
+            //         Convert.ToInt32(Math.Sin(dxRadians) * linesCircuit[i].Item1.X + (Math.Cos(dxRadians) * linesCircuit[i].Item1.Y))); ;
+            //    var (newX2, newY2) = (Convert.ToInt32(Math.Cos(dxRadians) * linesCircuit[i].Item2.X - Math.Sin(dxRadians) * linesCircuit[i].Item2.Y),
+            //        Convert.ToInt32(Math.Sin(dxRadians) * linesCircuit[i].Item2.X + (Math.Cos(dxRadians) * linesCircuit[i].Item2.Y)));
 
-            for (int i = 0; i < linesSkeleton.Count; ++i)
-            {
-                var (newX1, newY1) = (Convert.ToInt32((Math.Cos(dxRadians) * linesSkeleton[i].Item1.X - Math.Sin(dxRadians) * linesSkeleton[i].Item1.Y)),
-                     Convert.ToInt32(Math.Sin(dxRadians) * linesSkeleton[i].Item1.X + (Math.Cos(dxRadians) * linesSkeleton[i].Item1.Y))); ;
-                var (newX2, newY2) = (Convert.ToInt32(Math.Cos(dxRadians) * linesSkeleton[i].Item2.X - Math.Sin(dxRadians) * linesSkeleton[i].Item2.Y),
-                     Convert.ToInt32(Math.Sin(dxRadians) * linesSkeleton[i].Item2.X + (Math.Cos(dxRadians) * linesSkeleton[i].Item2.Y)));
+            //    linesCircuit[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
+            //}
 
-                linesSkeleton[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
-            }
+            //for (int i = 0; i < linesSkeleton.Count; ++i)
+            //{
+            //    var (newX1, newY1) = (Convert.ToInt32((Math.Cos(dxRadians) * linesSkeleton[i].Item1.X - Math.Sin(dxRadians) * linesSkeleton[i].Item1.Y)),
+            //         Convert.ToInt32(Math.Sin(dxRadians) * linesSkeleton[i].Item1.X + (Math.Cos(dxRadians) * linesSkeleton[i].Item1.Y))); ;
+            //    var (newX2, newY2) = (Convert.ToInt32(Math.Cos(dxRadians) * linesSkeleton[i].Item2.X - Math.Sin(dxRadians) * linesSkeleton[i].Item2.Y),
+            //         Convert.ToInt32(Math.Sin(dxRadians) * linesSkeleton[i].Item2.X + (Math.Cos(dxRadians) * linesSkeleton[i].Item2.Y)));
+
+            //    linesSkeleton[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
+            //}
 
 
             Graphics g = pictureBox1.CreateGraphics();

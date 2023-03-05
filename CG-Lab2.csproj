@@ -52,6 +52,7 @@
     <Compile Include="lab2\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="lab2\Geometry.cs" />
     <Compile Include="lab2\Painter.cs" />
     <Compile Include="lab2\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
