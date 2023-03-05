@@ -23,16 +23,6 @@ namespace CG_Lab2
             oldSkeletons = new Stack<List<(Point, Point)>>();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Load_Click(object sender, EventArgs e)
         {
             oldSkeletons.Push(linesSkeleton);
@@ -74,11 +64,6 @@ namespace CG_Lab2
 
             Painter.DrawLines(g, linesCircuit, Color.White);
             Painter.DrawLines(g, linesSkeleton, Color.White, 3);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void DrawScene()
@@ -155,7 +140,7 @@ namespace CG_Lab2
 
         private void ButtonDown_Click(object sender, EventArgs e)
         {
-            const int dy = -10;
+            const int dy = 10;
             const int dx = 0;
 
             Geometry.MoveLines(linesCircuit, dx, dy);
@@ -166,7 +151,7 @@ namespace CG_Lab2
 
         private void ButttonUp_Click(object sender, EventArgs e)
         {
-            const int dy = 10;
+            const int dy = -10;
             const int dx = 0;
 
             Geometry.MoveLines(linesCircuit, dx, dy);
@@ -195,11 +180,6 @@ namespace CG_Lab2
             Geometry.MoveLines(linesSkeleton, dx, dy);
 
             DrawScene();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void ToolStripMenuItem2_Click(object sender, EventArgs e)

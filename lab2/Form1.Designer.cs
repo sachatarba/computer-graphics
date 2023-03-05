@@ -77,7 +77,7 @@ namespace CG_Lab2
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 83);
+            this.button1.Location = new System.Drawing.Point(12, 85);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 28);
             this.button1.TabIndex = 1;
@@ -100,7 +100,6 @@ namespace CG_Lab2
             this.MoveX.Name = "MoveX";
             this.MoveX.Size = new System.Drawing.Size(44, 22);
             this.MoveX.TabIndex = 4;
-            this.MoveX.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // MoveY
             // 
@@ -163,7 +162,7 @@ namespace CG_Lab2
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(8, 206);
+            this.label5.Location = new System.Drawing.Point(8, 205);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 16);
             this.label5.TabIndex = 16;
@@ -172,14 +171,14 @@ namespace CG_Lab2
             // 
             // rotateX
             // 
-            this.rotateX.Location = new System.Drawing.Point(11, 229);
+            this.rotateX.Location = new System.Drawing.Point(11, 226);
             this.rotateX.Name = "rotateX";
             this.rotateX.Size = new System.Drawing.Size(97, 22);
             this.rotateX.TabIndex = 14;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 260);
+            this.button3.Location = new System.Drawing.Point(12, 257);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(96, 26);
             this.button3.TabIndex = 12;
@@ -191,7 +190,7 @@ namespace CG_Lab2
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(12, 557);
+            this.button4.Location = new System.Drawing.Point(12, 560);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(96, 27);
             this.button4.TabIndex = 17;
@@ -201,19 +200,20 @@ namespace CG_Lab2
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Location = new System.Drawing.Point(0, 26);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(119, 621);
+            this.panel1.Size = new System.Drawing.Size(119, 624);
             this.panel1.TabIndex = 18;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(11, 589);
+            this.button5.Location = new System.Drawing.Point(11, 592);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(96, 27);
             this.button5.TabIndex = 18;
@@ -282,7 +282,7 @@ namespace CG_Lab2
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, -2);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(228, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(78, 28);
             this.menuStrip1.TabIndex = 19;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -334,7 +334,6 @@ namespace CG_Lab2
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
