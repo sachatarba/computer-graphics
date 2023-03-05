@@ -17,6 +17,10 @@ namespace CG_Lab2
         public Form1()
         {
             InitializeComponent();
+            linesSkeleton = new List<(Point, Point)>();
+            linesCircuit = new List<(Point, Point)>();
+            oldCircuits = new Stack<List<(Point, Point)>>();
+            oldSkeletons = new Stack<List<(Point, Point)>>();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -31,8 +35,12 @@ namespace CG_Lab2
 
         private void Load_Click(object sender, EventArgs e)
         {
+            oldSkeletons.Push(linesSkeleton);
+            oldCircuits.Push(linesCircuit);
+
             linesCircuit = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\lab2\\Заяц.txt");
             linesSkeleton = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\lab2\\скелет.txt");
+
 
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);
@@ -54,6 +62,9 @@ namespace CG_Lab2
                 MessageBox.Show("Неверный ввод угла поворота", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            oldCircuits.Push(new List<(Point, Point)>(linesCircuit));
+            oldSkeletons.Push(new List<(Point, Point)>(linesSkeleton));
 
             Geometry.RotateLines(linesCircuit, angle);
             Geometry.RotateLines(linesSkeleton, angle);
@@ -84,6 +95,10 @@ namespace CG_Lab2
                 return;
             }
 
+
+            oldCircuits.Push(new List<(Point, Point)>(linesCircuit));
+            oldSkeletons.Push(new List<(Point, Point)>(linesSkeleton));
+
             Geometry.MoveLines(linesCircuit, dx, dy);
             Geometry.MoveLines(linesSkeleton, dx, dy);
 
@@ -108,6 +123,10 @@ namespace CG_Lab2
                 return;
             }
 
+
+            oldCircuits.Push(new List<(Point, Point)>(linesCircuit));
+            oldSkeletons.Push(new List<(Point, Point)>(linesSkeleton));
+
             Geometry.ScaleLines(linesCircuit, scaleX, scaleY);
             Geometry.ScaleLines(linesSkeleton, scaleX, scaleY);
 
@@ -116,6 +135,25 @@ namespace CG_Lab2
 
             Painter.DrawLines(g, linesCircuit, Color.White);
             Painter.DrawLines(g, linesSkeleton, Color.White, 3);
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            if (oldCircuits.Count == 0 || oldSkeletons.Count == 0)
+            {
+                MessageBox.Show(
+                    "Достигнуто начальное состояние", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            linesCircuit = new List<(Point, Point)>(oldCircuits.Pop());
+            linesSkeleton = new List<(Point, Point)>(oldSkeletons.Pop());
+
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.White);
+
+            Painter.DrawLines(g, linesCircuit, Color.White);
+            Painter.DrawLines(g, linesSkeleton, Color.White, 3);      
         }
     }
 }
