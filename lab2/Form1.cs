@@ -102,27 +102,14 @@ namespace CG_Lab2
                 return;
             }
 
-            if (!double.TryParse(ScaleX.Text, out double dx) || !double.TryParse(ScaleY.Text, out double dy))
+            if (!double.TryParse(ScaleX.Text, out double scaleX) || !double.TryParse(ScaleY.Text, out double scaleY))
             {
                 MessageBox.Show("Неверный ввода коэффициенты маштабирования", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            for (int i = 0; i < linesCircuit.Count; ++i)
-            {
-                var (newX1, newY1) = (Convert.ToInt32(linesCircuit[i].Item1.X * dx), Convert.ToInt32(linesCircuit[i].Item1.Y * dy));
-                var (newX2, newY2) = (Convert.ToInt32(linesCircuit[i].Item2.X * dx), Convert.ToInt32(linesCircuit[i].Item2.Y * dy));
-
-                linesCircuit[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
-            }
-
-            for (int i = 0; i < linesSkeleton.Count; ++i)
-            {
-                var (newX1, newY1) = (Convert.ToInt32(linesSkeleton[i].Item1.X * dx), Convert.ToInt32(linesSkeleton[i].Item1.Y * dy));
-                var (newX2, newY2) = (Convert.ToInt32(linesSkeleton[i].Item2.X * dx), Convert.ToInt32(linesSkeleton[i].Item2.Y * dy));
-
-                linesSkeleton[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
-            }
+            Geometry.ScaleLines(linesCircuit, scaleX, scaleY);
+            Geometry.ScaleLines(linesSkeleton, scaleX, scaleY);
 
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);

@@ -35,5 +35,16 @@ namespace CG_Lab2.lab2
                 lines[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
             }
         }
+
+        public static void ScaleLines(List<(Point, Point)> lines, double scaleX, double scaleY)
+        {
+            for (int i = 0; i < lines.Count; ++i)
+            {
+                var (newX1, newY1) = (Convert.ToInt32(lines[i].Item1.X * scaleX), Convert.ToInt32(lines[i].Item1.Y * scaleY));
+                var (newX2, newY2) = (Convert.ToInt32(lines[i].Item2.X * scaleX), Convert.ToInt32(lines[i].Item2.Y * scaleY));
+
+                lines[i] = (new Point(newX1, newY1), new Point(newX2, newY2));
+            }
+        }
     }
 }
