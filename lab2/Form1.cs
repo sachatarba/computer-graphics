@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CG_Lab2.lab2;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,25 +31,14 @@ namespace CG_Lab2
 
         private void Load_Click(object sender, EventArgs e)
         {
-            linesCircuit = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\Заяц.txt");
+            linesCircuit = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\lab2\\Заяц.txt");
+            linesSkeleton = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\lab2\\скелет.txt");
 
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);
-            Pen pen = new Pen(Color.Black, 5);
-            //MessageBox.Show($"{lines.Count}");
-            foreach (var line in linesCircuit)
-            {
-                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
-                g.DrawLine(pen, line.Item1, line.Item2);
-            }
 
-            pen = new Pen(Color.Black, 3);
-            linesSkeleton = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\скелет.txt");
-            foreach (var line in linesSkeleton)
-            {
-                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
-                g.DrawLine(pen, line.Item1, line.Item2);
-            }
+            Painter.DrawLines(g, linesCircuit, Color.White);
+            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
         }
 
         private void Rotate_Click(object sender, EventArgs e)
@@ -90,20 +80,9 @@ namespace CG_Lab2
 
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);
-            Pen pen = new Pen(Color.Black, 5);
-            //MessageBox.Show($"{lines.Count}");
-            foreach (var line in linesCircuit)
-            {
-                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
-                g.DrawLine(pen, line.Item1, line.Item2);
-            }
 
-            pen = new Pen(Color.Black, 3);
-            foreach (var line in linesSkeleton)
-            {
-                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
-                g.DrawLine(pen, line.Item1, line.Item2);
-            }
+            Painter.DrawLines(g, linesCircuit, Color.White);
+            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -143,21 +122,9 @@ namespace CG_Lab2
 
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);
-            Pen pen = new Pen(Color.Black, 5);
-            //MessageBox.Show($"{lines.Count}");
-            foreach (var line in linesCircuit)
-            {
-                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
-                g.DrawLine(pen, line.Item1, line.Item2);
-            }
 
-            pen = new Pen(Color.Black, 3);
-            foreach (var line in linesSkeleton)
-            {
-                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
-                g.DrawLine(pen, line.Item1, line.Item2);
-            }
-
+            Painter.DrawLines(g, linesCircuit, Color.White);
+            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
         }
 
         private void Scale_Click(object sender, EventArgs e)
@@ -192,20 +159,9 @@ namespace CG_Lab2
 
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);
-            Pen pen = new Pen(Color.Black, 5);
-            //MessageBox.Show($"{lines.Count}");
-            foreach (var line in linesCircuit)
-            {
-                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
-                g.DrawLine(pen, line.Item1, line.Item2);
-            }
 
-            pen = new Pen(Color.Black, 3);
-            foreach (var line in linesSkeleton)
-            {
-                //MessageBox.Show($"{line.Item1.X} {line.Item1.Y} {line.Item2.X} {line.Item2.Y}");
-                g.DrawLine(pen, line.Item1, line.Item2);
-            }
+            Painter.DrawLines(g, linesCircuit, Color.White);
+            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
         }
     }
 }

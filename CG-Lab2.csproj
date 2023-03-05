@@ -46,16 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="lab2\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="lab2\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="lab2\Painter.cs" />
+    <Compile Include="lab2\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextCoordsParser.cs" />
-    <EmbeddedResource Include="Form1.resx">
+    <Compile Include="lab2\TextCoordsParser.cs" />
+    <EmbeddedResource Include="lab2\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -78,11 +79,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="lab2\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Заяц.txt" />
-    <Content Include="скелет.txt" />
+    <Content Include="lab2\Заяц.txt" />
+    <Content Include="lab2\скелет.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
