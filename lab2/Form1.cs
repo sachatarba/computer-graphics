@@ -39,6 +39,39 @@ namespace CG_Lab2
             Painter.DrawLines(g, linesSkeleton, Color.White, 3);
         }
 
+
+        private void DrawScene()
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            g.Clear(Color.White);
+
+            Painter.DrawLines(g, linesCircuit, Color.White);
+            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
+        }
+
+        private void ScaleAllLines(double scaleX, double scaleY)
+        {
+            Geometry.ScaleLines(linesCircuit, scaleX, scaleY);
+            Geometry.ScaleLines(linesSkeleton, scaleX, scaleY);
+        }
+
+        private void MoveAllLines(int dx, int dy)
+        {
+            Geometry.MoveLines(linesCircuit, dx, dy);
+            Geometry.MoveLines(linesSkeleton, dx, dy);
+        }
+
+        private void RotateAllLines(int angle)
+        {
+            Geometry.RotateLines(linesCircuit, angle);
+            Geometry.RotateLines(linesSkeleton, angle);
+        }
+
+        public void PushInStackFigure()
+        {
+            oldCircuits.Push(new List<(Point, Point)>(linesCircuit));
+            oldSkeletons.Push(new List<(Point, Point)>(linesSkeleton));
+        }
         private void Rotate_Click(object sender, EventArgs e)
         {
             if (rotateX.Text.Length == 0)
@@ -53,26 +86,35 @@ namespace CG_Lab2
                 return;
             }
 
-            oldCircuits.Push(new List<(Point, Point)>(linesCircuit));
-            oldSkeletons.Push(new List<(Point, Point)>(linesSkeleton));
+            if (centerX.Text == "" ^ centerY.Text == "")
+            {
+                MessageBox.Show(
+                    "Введите обе координаты точки центра маштабирования", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            Geometry.RotateLines(linesCircuit, angle);
-            Geometry.RotateLines(linesSkeleton, angle);
+            if (centerX.Text != "" && centerY.Text != "")
+            {
+                if (!int.TryParse(centerX.Text, out int ddx) || !int.TryParse(centerX.Text, out int ddy))
+                {
+                    MessageBox.Show("Неверный ввод точки",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-            Graphics g = pictureBox1.CreateGraphics();
-            g.Clear(Color.White);
+                PushInStackFigure();
+                MoveAllLines(-ddx, -ddy);
+                RotateAllLines(angle);
+                MoveAllLines(ddx, ddy);
+            }
+            else
+            {
+                PushInStackFigure();
+                RotateAllLines(angle);
+            }
 
-            Painter.DrawLines(g, linesCircuit, Color.White);
-            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
-        }
-
-        private void DrawScene()
-        {
-            Graphics g = pictureBox1.CreateGraphics();
-            g.Clear(Color.White);
-
-            Painter.DrawLines(g, linesCircuit, Color.White);
-            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
+            DrawScene();
         }
 
         private void Move_Click(object sender, EventArgs e)
@@ -89,12 +131,33 @@ namespace CG_Lab2
                 return;
             }
 
+            if (centerX.Text == "" ^ centerY.Text == "")
+            {
+                MessageBox.Show(
+                    "Введите обе координаты точки центра маштабирования", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            oldCircuits.Push(new List<(Point, Point)>(linesCircuit));
-            oldSkeletons.Push(new List<(Point, Point)>(linesSkeleton));
+            if (centerX.Text != "" && centerY.Text != "")
+            {
+                if (!int.TryParse(centerX.Text, out int ddx) || !int.TryParse(centerX.Text, out int ddy))
+                {
+                    MessageBox.Show("Неверный ввод точки",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-            Geometry.MoveLines(linesCircuit, dx, dy);
-            Geometry.MoveLines(linesSkeleton, dx, dy);
+                PushInStackFigure();
+                MoveAllLines(-ddx, -ddy);
+                MoveAllLines(dx, dy);
+                MoveAllLines(ddx, ddy);
+            }
+            else
+            {
+                PushInStackFigure();
+                MoveAllLines(dx, dy);
+            }
 
             DrawScene();
         }
@@ -103,22 +166,47 @@ namespace CG_Lab2
         {
             if (ScaleX.Text.Length == 0 || ScaleY.Text.Length == 0)
             {
-                MessageBox.Show("Введите коэффициенты маштабирования", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Введите коэффициенты маштабирования", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!double.TryParse(ScaleX.Text, out double scaleX) || !double.TryParse(ScaleY.Text, out double scaleY))
             {
-                MessageBox.Show("Неверный ввод коэффициенты маштабирования", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Неверный ввод коэффициенты маштабирования", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            if (centerX.Text == "" ^ centerY.Text == "")
+            {
+                MessageBox.Show(
+                    "Введите обе координаты точки центра маштабирования", "Ошибка", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            oldCircuits.Push(new List<(Point, Point)>(linesCircuit));
-            oldSkeletons.Push(new List<(Point, Point)>(linesSkeleton));
+            if (centerX.Text != "" && centerY.Text != "")
+            {
+                if (!int.TryParse(centerX.Text, out int ddx) || !int.TryParse(centerX.Text, out int ddy))
+                {
+                    MessageBox.Show("Неверный ввод точки",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-            Geometry.ScaleLines(linesCircuit, scaleX, scaleY);
-            Geometry.ScaleLines(linesSkeleton, scaleX, scaleY);
+                PushInStackFigure();
+                MoveAllLines(-ddx, -ddy);
+                ScaleAllLines(scaleX, scaleY);
+                MoveAllLines(ddx, ddy);
+            }
+            else
+            {
+                PushInStackFigure();
+                ScaleAllLines(scaleX, scaleY);
+            }
 
             DrawScene();
         }

@@ -47,6 +47,9 @@ namespace CG_Lab2
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelCenter = new System.Windows.Forms.Label();
+            this.centerY = new System.Windows.Forms.TextBox();
+            this.centerX = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonRight = new System.Windows.Forms.Button();
@@ -202,12 +205,38 @@ namespace CG_Lab2
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Controls.Add(this.labelCenter);
+            this.panel1.Controls.Add(this.centerY);
+            this.panel1.Controls.Add(this.centerX);
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Location = new System.Drawing.Point(0, 26);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(119, 624);
             this.panel1.TabIndex = 18;
+            // 
+            // labelCenter
+            // 
+            this.labelCenter.Location = new System.Drawing.Point(11, 277);
+            this.labelCenter.Name = "labelCenter";
+            this.labelCenter.Size = new System.Drawing.Size(96, 36);
+            this.labelCenter.TabIndex = 20;
+            this.labelCenter.Text = "Центр трансф-ий";
+            this.labelCenter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // centerY
+            // 
+            this.centerY.Location = new System.Drawing.Point(66, 316);
+            this.centerY.Name = "centerY";
+            this.centerY.Size = new System.Drawing.Size(41, 22);
+            this.centerY.TabIndex = 20;
+            // 
+            // centerX
+            // 
+            this.centerX.Location = new System.Drawing.Point(11, 316);
+            this.centerX.Name = "centerX";
+            this.centerX.Size = new System.Drawing.Size(41, 22);
+            this.centerX.TabIndex = 19;
             // 
             // button5
             // 
@@ -292,7 +321,7 @@ namespace CG_Lab2
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(65, 24);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(65, 26);
             this.toolStripMenuItem1.Text = "Меню";
             // 
             // toolStripMenuItem2
@@ -336,6 +365,7 @@ namespace CG_Lab2
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -377,6 +407,9 @@ namespace CG_Lab2
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.TextBox centerX;
+        private System.Windows.Forms.TextBox centerY;
+        private System.Windows.Forms.Label labelCenter;
     }
 }
 
