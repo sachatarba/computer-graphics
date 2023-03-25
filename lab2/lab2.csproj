@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Geometry.cs" />
     <Compile Include="Painter.cs" />
+    <Compile Include="Point2f.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextCoordsParser.cs" />

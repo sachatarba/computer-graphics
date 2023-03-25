@@ -12,11 +12,11 @@ namespace CG_Lab2
 {
     internal class TextCoordsParser
     {
-       public static void GetPoint(String pointCoords, out Point point)
+       public static void GetPoint(String pointCoords, out Point2f point)
        {
             var (firstCoord, secondCoord)= (pointCoords.Trim().Split(' ')[0], pointCoords.Trim().Split(' ')[1]);
-            point = new Point();
-            if (int.TryParse(firstCoord, out int x) && int.TryParse(secondCoord, out int y))
+            point = new Point2f();
+            if (float.TryParse(firstCoord, out float x) && float.TryParse(secondCoord, out float y))
             {
                 point.X = x;
                 point.Y = y;
@@ -27,9 +27,9 @@ namespace CG_Lab2
                     "Невозможно получить координаты точек", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
        }
-       public static List<(Point, Point)> GetCoordsFromTxt(String filepath)
+       public static List<(Point2f, Point2f)> GetCoordsFromTxt(String filepath)
        {
-            List<(Point, Point)> lines = new List<(Point, Point)>();
+            List<(Point2f, Point2f)> lines = new List<(Point2f, Point2f)>();
 
             try
             {
@@ -41,8 +41,8 @@ namespace CG_Lab2
                     buff = buff.Trim();
                     String[] points = buff.Split(';');
 
-                    GetPoint(points[0], out Point point1);
-                    GetPoint(points[1], out Point point2);
+                    GetPoint(points[0], out Point2f point1);
+                    GetPoint(points[1], out Point2f point2);
 
                     lines.Add((point1, point2));
                     buff = sr.ReadLine();

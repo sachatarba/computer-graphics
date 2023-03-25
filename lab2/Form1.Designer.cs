@@ -72,11 +72,12 @@ namespace CG_Lab2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pictureBox1.Location = new System.Drawing.Point(117, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(117, -2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(935, 625);
+            this.pictureBox1.Size = new System.Drawing.Size(935, 653);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox1_Paint);
             // 
             // button1
             // 
@@ -321,7 +322,7 @@ namespace CG_Lab2
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(65, 26);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(65, 24);
             this.toolStripMenuItem1.Text = "Меню";
             // 
             // toolStripMenuItem2
@@ -392,10 +393,10 @@ namespace CG_Lab2
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         
-        private List<(Point, Point)> linesCircuit;
-        private List<(Point, Point)> linesSkeleton;
-        private Stack<List<(Point, Point)>> oldCircuits;
-        private Stack<List<(Point, Point)>> oldSkeletons;
+        private List<(Point2f, Point2f)> linesCircuit;
+        private List<(Point2f, Point2f)> linesSkeleton;
+        private Stack<List<(Point2f, Point2f)>> oldCircuits;
+        private Stack<List<(Point2f, Point2f)>> oldSkeletons;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel panel2;

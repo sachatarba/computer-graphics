@@ -10,13 +10,13 @@ namespace CG_Lab2.lab2
 {
     internal class Painter
     {
-        public static void DrawLines(Graphics g, List<(Point, Point)> lines, Color backColor, float width = 5)
+        public static void DrawLines(Graphics g, List<(Point2f, Point2f)> lines, Color backColor, float width = 5)
         {
-            Pen pen = new Pen(Color.Black, width);
+            Pen pen = new Pen(backColor, width);
 
             foreach (var line in lines)
             {
-                g.DrawLine(pen, line.Item1, line.Item2);
+                g.DrawLine(pen, line.Item1.X, line.Item1.Y, line.Item2.X, line.Item2.Y);
             }
         }
     }

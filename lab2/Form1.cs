@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -17,10 +18,10 @@ namespace CG_Lab2
         public Form1()
         {
             InitializeComponent();
-            linesSkeleton = new List<(Point, Point)>();
-            linesCircuit = new List<(Point, Point)>();
-            oldCircuits = new Stack<List<(Point, Point)>>();
-            oldSkeletons = new Stack<List<(Point, Point)>>();
+            linesSkeleton = new List<(Point2f, Point2f)>();
+            linesCircuit = new List<(Point2f, Point2f)>();
+            oldCircuits = new Stack<List<(Point2f, Point2f)>>();
+            oldSkeletons = new Stack<List<(Point2f, Point2f)>>();
         }
 
         private void Load_Click(object sender, EventArgs e)
@@ -31,12 +32,8 @@ namespace CG_Lab2
             linesCircuit = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\lab2\\Заяц.txt");
             linesSkeleton = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\lab2\\скелет.txt");
 
-
-            Graphics g = pictureBox1.CreateGraphics();
-            g.Clear(Color.White);
-
-            Painter.DrawLines(g, linesCircuit, Color.White);
-            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
+            MoveAllLines(-240, -240);
+            DrawScene();
         }
 
 
@@ -44,9 +41,16 @@ namespace CG_Lab2
         {
             Graphics g = pictureBox1.CreateGraphics();
             g.Clear(Color.White);
+            g.TranslateTransform(pictureBox1.Size.Width / 2f, pictureBox1.Size.Height / 2f);
 
-            Painter.DrawLines(g, linesCircuit, Color.White);
-            Painter.DrawLines(g, linesSkeleton, Color.White, 3);
+            Pen pen = new Pen(Color.Gray, 2);
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            pen.CustomStartCap = new AdjustableArrowCap(6, 6);
+            g.DrawLine(pen, 0, -pictureBox1.Size.Height / 2f, 0, pictureBox1.Size.Height / 2f);
+            g.DrawLine(pen, pictureBox1.Size.Width / 2f, 0, -pictureBox1.Size.Width / 2f, 0);
+
+            Painter.DrawLines(g, linesCircuit, Color.Black);
+            Painter.DrawLines(g, linesSkeleton, Color.Black, 3);
         }
 
         private void ScaleAllLines(double scaleX, double scaleY)
@@ -69,8 +73,8 @@ namespace CG_Lab2
 
         public void PushInStackFigure()
         {
-            oldCircuits.Push(new List<(Point, Point)>(linesCircuit));
-            oldSkeletons.Push(new List<(Point, Point)>(linesSkeleton));
+            oldCircuits.Push(new List<(Point2f, Point2f)>(linesCircuit));
+            oldSkeletons.Push(new List<(Point2f, Point2f)>(linesSkeleton));
         }
         private void Rotate_Click(object sender, EventArgs e)
         {
@@ -98,7 +102,7 @@ namespace CG_Lab2
             {
                 if (!int.TryParse(centerX.Text, out int ddx) || !int.TryParse(centerY.Text, out int ddy))
                 {
-                    MessageBox.Show("Неверный ввод точки",
+                    MessageBox.Show("Неверный ввод точки центра маштабирования",
                         "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -221,8 +225,8 @@ namespace CG_Lab2
                 return;
             }
 
-            linesCircuit = new List<(Point, Point)>(oldCircuits.Pop());
-            linesSkeleton = new List<(Point, Point)>(oldSkeletons.Pop());
+            linesCircuit = new List<(Point2f, Point2f)>(oldCircuits.Pop());
+            linesSkeleton = new List<(Point2f, Point2f)>(oldSkeletons.Pop());
 
             DrawScene();     
         }
@@ -283,6 +287,12 @@ namespace CG_Lab2
             MessageBox.Show(
                 "Тарба Александр ИУ7-45Б",
                 "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void PictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            //e.Graphics.TranslateTransform(e.Graphics.DpiX / 2f, e.Graphics.DpiY / 2f);
+            DrawScene();
         }
     }
 }
