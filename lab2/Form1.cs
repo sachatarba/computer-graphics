@@ -32,22 +32,48 @@ namespace CG_Lab2
             linesCircuit = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\lab2\\Заяц.txt");
             linesSkeleton = TextCoordsParser.GetCoordsFromTxt("C:\\Users\\Lenevo Legion 5\\source\\repos\\CG-Lab2\\lab2\\скелет.txt");
 
-            MoveAllLines(-240, -240);
-            DrawScene();
+
+
+            MoveAllLines(-240, 240);
+            pictureBox1.Refresh();
         }
 
 
-        private void DrawScene()
+        private void DrawGrid(Graphics g)
         {
-            Graphics g = pictureBox1.CreateGraphics();
+            Pen arrow = new Pen(Color.Gray, 2);
+            arrow.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            arrow.CustomStartCap = new AdjustableArrowCap(6, 6);
+
+            Pen pen = new Pen(Color.Gray, 1);
+            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+
+
+            int i = -pictureBox1.Size.Width;
+            
+            while (i * 50 < pictureBox1.Size.Width)
+            {
+                g.DrawLine(pen, i * 50, -pictureBox1.Size.Height / 2f, i * 50, pictureBox1.Size.Height / 2f);
+                ++i;
+            }
+            int j = -pictureBox1.Size.Height;
+            while (j * 10 < pictureBox1.Size.Height)
+            {
+                g.DrawLine(pen, -pictureBox1.Size.Width / 2f, j * 50, pictureBox1.Size.Width / 2f, j * 50);
+                ++j;
+            }
+
+            g.DrawLine(arrow, pictureBox1.Size.Width / 2f, 0, -pictureBox1.Size.Width / 2f, 0);
+            g.DrawLine(arrow, 0, -pictureBox1.Size.Height / 2f, 0, pictureBox1.Size.Height / 2f);
+
+        }
+
+        private void DrawScene(Graphics g)
+        {
             g.Clear(Color.White);
             g.TranslateTransform(pictureBox1.Size.Width / 2f, pictureBox1.Size.Height / 2f);
 
-            Pen pen = new Pen(Color.Gray, 2);
-            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            pen.CustomStartCap = new AdjustableArrowCap(6, 6);
-            g.DrawLine(pen, 0, -pictureBox1.Size.Height / 2f, 0, pictureBox1.Size.Height / 2f);
-            g.DrawLine(pen, pictureBox1.Size.Width / 2f, 0, -pictureBox1.Size.Width / 2f, 0);
+            DrawGrid(g);
 
             Painter.DrawLines(g, linesCircuit, Color.Black);
             Painter.DrawLines(g, linesSkeleton, Color.Black, 3);
@@ -61,8 +87,8 @@ namespace CG_Lab2
 
         private void MoveAllLines(int dx, int dy)
         {
-            Geometry.MoveLines(linesCircuit, dx, dy);
-            Geometry.MoveLines(linesSkeleton, dx, dy);
+            Geometry.MoveLines(linesCircuit, dx, -dy);
+            Geometry.MoveLines(linesSkeleton, dx, -dy);
         }
 
         private void RotateAllLines(int angle)
@@ -83,7 +109,7 @@ namespace CG_Lab2
                 MessageBox.Show("Введите угол поворота", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             if (!int.TryParse(rotateX.Text, out int angle))
             {
                 MessageBox.Show("Неверный ввод угла поворота", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -118,7 +144,7 @@ namespace CG_Lab2
                 RotateAllLines(angle);
             }
 
-            DrawScene();
+            pictureBox1.Refresh();
         }
 
         private void Move_Click(object sender, EventArgs e)
@@ -164,7 +190,7 @@ namespace CG_Lab2
                 MoveAllLines(dx, dy);
             }
 
-            DrawScene();
+            pictureBox1.Refresh();
         }
 
         private void Scale_Click(object sender, EventArgs e)
@@ -188,7 +214,7 @@ namespace CG_Lab2
             if (centerX.Text == "" ^ centerY.Text == "")
             {
                 MessageBox.Show(
-                    "Введите обе координаты точки центра маштабирования", "Ошибка", 
+                    "Введите обе координаты точки центра маштабирования", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -213,7 +239,7 @@ namespace CG_Lab2
                 ScaleAllLines(scaleX, scaleY);
             }
 
-            DrawScene();
+            pictureBox1.Refresh();
         }
 
         private void Cancel_Click(object sender, EventArgs e)
@@ -228,7 +254,7 @@ namespace CG_Lab2
             linesCircuit = new List<(Point2f, Point2f)>(oldCircuits.Pop());
             linesSkeleton = new List<(Point2f, Point2f)>(oldSkeletons.Pop());
 
-            DrawScene();     
+            pictureBox1.Refresh();
         }
 
         private void ButtonDown_Click(object sender, EventArgs e)
@@ -239,7 +265,7 @@ namespace CG_Lab2
             Geometry.MoveLines(linesCircuit, dx, dy);
             Geometry.MoveLines(linesSkeleton, dx, dy);
 
-            DrawScene();
+            pictureBox1.Refresh();
         }
 
         private void ButttonUp_Click(object sender, EventArgs e)
@@ -250,7 +276,7 @@ namespace CG_Lab2
             Geometry.MoveLines(linesCircuit, dx, dy);
             Geometry.MoveLines(linesSkeleton, dx, dy);
 
-            DrawScene();
+            pictureBox1.Refresh();
         }
 
         private void ButtonLeft_Click(object sender, EventArgs e)
@@ -261,7 +287,7 @@ namespace CG_Lab2
             Geometry.MoveLines(linesCircuit, dx, dy);
             Geometry.MoveLines(linesSkeleton, dx, dy);
 
-            DrawScene();
+            pictureBox1.Refresh();
         }
 
         private void ButtonRight_Click(object sender, EventArgs e)
@@ -272,7 +298,7 @@ namespace CG_Lab2
             Geometry.MoveLines(linesCircuit, dx, dy);
             Geometry.MoveLines(linesSkeleton, dx, dy);
 
-            DrawScene();
+            pictureBox1.Refresh();
         }
 
         private void ToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -291,8 +317,12 @@ namespace CG_Lab2
 
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            //e.Graphics.TranslateTransform(e.Graphics.DpiX / 2f, e.Graphics.DpiY / 2f);
-            DrawScene();
+            DrawScene(e.Graphics);
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Refresh();
         }
     }
 }
