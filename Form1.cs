@@ -96,7 +96,7 @@ namespace CG_Lab2
 
             if (centerX.Text != "" && centerY.Text != "")
             {
-                if (!int.TryParse(centerX.Text, out int ddx) || !int.TryParse(centerX.Text, out int ddy))
+                if (!int.TryParse(centerX.Text, out int ddx) || !int.TryParse(centerY.Text, out int ddy))
                 {
                     MessageBox.Show("Неверный ввод точки",
                         "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -139,9 +139,10 @@ namespace CG_Lab2
                 return;
             }
 
+
             if (centerX.Text != "" && centerY.Text != "")
             {
-                if (!int.TryParse(centerX.Text, out int ddx) || !int.TryParse(centerX.Text, out int ddy))
+                if (!int.TryParse(centerX.Text, out int ddx) || !int.TryParse(centerY.Text, out int ddy))
                 {
                     MessageBox.Show("Неверный ввод точки",
                         "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -190,7 +191,7 @@ namespace CG_Lab2
 
             if (centerX.Text != "" && centerY.Text != "")
             {
-                if (!int.TryParse(centerX.Text, out int ddx) || !int.TryParse(centerX.Text, out int ddy))
+                if (!int.TryParse(centerX.Text, out int ddx) || !int.TryParse(centerY.Text, out int ddy))
                 {
                     MessageBox.Show("Неверный ввод точки",
                         "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
