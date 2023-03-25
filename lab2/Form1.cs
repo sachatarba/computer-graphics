@@ -198,7 +198,7 @@ namespace CG_Lab2
             if (ScaleX.Text.Length == 0 || ScaleY.Text.Length == 0)
             {
                 MessageBox.Show(
-                    "Введите коэффициенты маштабирования", "Ошибка",
+                    "Введите коэффициенты масштабирования", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -206,7 +206,7 @@ namespace CG_Lab2
             if (!double.TryParse(ScaleX.Text, out double scaleX) || !double.TryParse(ScaleY.Text, out double scaleY))
             {
                 MessageBox.Show(
-                    "Неверный ввод коэффициенты маштабирования", "Ошибка",
+                    "Неверный ввод коэффициентов масштабирования", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -214,7 +214,7 @@ namespace CG_Lab2
             if (centerX.Text == "" ^ centerY.Text == "")
             {
                 MessageBox.Show(
-                    "Введите обе координаты точки центра маштабирования", "Ошибка",
+                    "Введите обе координаты точки центра масштабирования", "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
