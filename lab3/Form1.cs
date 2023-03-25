@@ -51,5 +51,10 @@ namespace lab3
         {
             pictureBox1.BackColor= Color.Green;
         }
+
+        private void drawLineBtn_Click(object sender, EventArgs e)
+        {
+            xBeg.Value
+        }
     }
 }

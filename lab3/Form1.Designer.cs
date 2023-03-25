@@ -539,6 +539,7 @@
             this.drawLineBtn.TabIndex = 30;
             this.drawLineBtn.Text = "Отрисовать линию";
             this.drawLineBtn.UseVisualStyleBackColor = false;
+            this.drawLineBtn.Click += new System.EventHandler(this.drawLineBtn_Click);
             // 
             // drawSpecBtn
             // 
@@ -768,6 +769,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label drawLbl;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private CurALg
     }
 }
 
