@@ -1,4 +1,7 @@
-﻿namespace lab3
+﻿using System.Collections.Generic;
+using System.Drawing;
+
+namespace lab3
 {
     partial class Form1
     {
@@ -29,6 +32,20 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.drawLbl = new System.Windows.Forms.Label();
+            this.drawSpecBtn = new System.Windows.Forms.Button();
+            this.lengthSpec = new System.Windows.Forms.NumericUpDown();
+            this.angleSpec = new System.Windows.Forms.NumericUpDown();
+            this.yCenter = new System.Windows.Forms.NumericUpDown();
+            this.xCenter = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.drawLineBtn = new System.Windows.Forms.Button();
+            this.yEnd = new System.Windows.Forms.NumericUpDown();
+            this.xEnd = new System.Windows.Forms.NumericUpDown();
             this.yBeg = new System.Windows.Forms.NumericUpDown();
             this.xBeg = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
@@ -62,30 +79,17 @@
             this.infoTask = new System.Windows.Forms.ToolStripMenuItem();
             this.infoAuthor = new System.Windows.Forms.ToolStripMenuItem();
             this.exit = new System.Windows.Forms.ToolStripMenuItem();
-            this.yEnd = new System.Windows.Forms.NumericUpDown();
-            this.xEnd = new System.Windows.Forms.NumericUpDown();
-            this.drawLineBtn = new System.Windows.Forms.Button();
-            this.drawSpecBtn = new System.Windows.Forms.Button();
-            this.lengthSpec = new System.Windows.Forms.NumericUpDown();
-            this.angleSpec = new System.Windows.Forms.NumericUpDown();
-            this.yCenter = new System.Windows.Forms.NumericUpDown();
-            this.xCenter = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.drawLbl = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.yBeg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xBeg)).BeginInit();
-            this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.yEnd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lengthSpec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.angleSpec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yCenter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xCenter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.yEnd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xEnd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.yBeg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xBeg)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,6 +99,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.drawLbl);
             this.panel1.Controls.Add(this.drawSpecBtn);
             this.panel1.Controls.Add(this.lengthSpec);
@@ -139,9 +144,211 @@
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(275, 725);
+            this.panel1.Size = new System.Drawing.Size(275, 751);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(3, 720);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(269, 26);
+            this.button1.TabIndex = 41;
+            this.button1.Text = "Очистка экрана";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.CancelBtn_Click);
+            // 
+            // drawLbl
+            // 
+            this.drawLbl.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.drawLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.drawLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.drawLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.drawLbl.Location = new System.Drawing.Point(3, 405);
+            this.drawLbl.Name = "drawLbl";
+            this.drawLbl.Size = new System.Drawing.Size(269, 41);
+            this.drawLbl.TabIndex = 40;
+            this.drawLbl.Text = "Отрисовка";
+            this.drawLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // drawSpecBtn
+            // 
+            this.drawSpecBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.drawSpecBtn.Location = new System.Drawing.Point(3, 612);
+            this.drawSpecBtn.Name = "drawSpecBtn";
+            this.drawSpecBtn.Size = new System.Drawing.Size(269, 26);
+            this.drawSpecBtn.TabIndex = 39;
+            this.drawSpecBtn.Text = "Отрисовать спектр";
+            this.drawSpecBtn.UseVisualStyleBackColor = false;
+            this.drawSpecBtn.Click += new System.EventHandler(this.drawSpecBtn_Click);
+            // 
+            // lengthSpec
+            // 
+            this.lengthSpec.DecimalPlaces = 2;
+            this.lengthSpec.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.lengthSpec.Location = new System.Drawing.Point(206, 584);
+            this.lengthSpec.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.lengthSpec.Name = "lengthSpec";
+            this.lengthSpec.Size = new System.Drawing.Size(66, 22);
+            this.lengthSpec.TabIndex = 38;
+            // 
+            // angleSpec
+            // 
+            this.angleSpec.DecimalPlaces = 2;
+            this.angleSpec.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.angleSpec.Location = new System.Drawing.Point(139, 584);
+            this.angleSpec.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.angleSpec.Name = "angleSpec";
+            this.angleSpec.Size = new System.Drawing.Size(65, 22);
+            this.angleSpec.TabIndex = 37;
+            // 
+            // yCenter
+            // 
+            this.yCenter.DecimalPlaces = 2;
+            this.yCenter.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.yCenter.Location = new System.Drawing.Point(70, 584);
+            this.yCenter.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.yCenter.Name = "yCenter";
+            this.yCenter.Size = new System.Drawing.Size(66, 22);
+            this.yCenter.TabIndex = 36;
+            // 
+            // xCenter
+            // 
+            this.xCenter.DecimalPlaces = 2;
+            this.xCenter.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.xCenter.Location = new System.Drawing.Point(3, 584);
+            this.xCenter.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.xCenter.Name = "xCenter";
+            this.xCenter.Size = new System.Drawing.Size(65, 22);
+            this.xCenter.TabIndex = 35;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(206, 561);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 29);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "Длина";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(137, 562);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 29);
+            this.label8.TabIndex = 33;
+            this.label8.Text = "Угол";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(71, 562);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(63, 29);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "Уц";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(3, 562);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(63, 29);
+            this.label10.TabIndex = 31;
+            this.label10.Text = "Хц";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // drawLineBtn
+            // 
+            this.drawLineBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.drawLineBtn.Location = new System.Drawing.Point(3, 504);
+            this.drawLineBtn.Name = "drawLineBtn";
+            this.drawLineBtn.Size = new System.Drawing.Size(269, 26);
+            this.drawLineBtn.TabIndex = 30;
+            this.drawLineBtn.Text = "Отрисовать линию";
+            this.drawLineBtn.UseVisualStyleBackColor = false;
+            this.drawLineBtn.Click += new System.EventHandler(this.drawLineBtn_Click);
+            // 
+            // yEnd
+            // 
+            this.yEnd.DecimalPlaces = 2;
+            this.yEnd.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.yEnd.Location = new System.Drawing.Point(206, 476);
+            this.yEnd.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.yEnd.Name = "yEnd";
+            this.yEnd.Size = new System.Drawing.Size(66, 22);
+            this.yEnd.TabIndex = 29;
+            // 
+            // xEnd
+            // 
+            this.xEnd.DecimalPlaces = 2;
+            this.xEnd.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.xEnd.Location = new System.Drawing.Point(139, 476);
+            this.xEnd.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.xEnd.Name = "xEnd";
+            this.xEnd.Size = new System.Drawing.Size(65, 22);
+            this.xEnd.TabIndex = 28;
             // 
             // yBeg
             // 
@@ -294,6 +501,7 @@
             this.greenLineBtn.Size = new System.Drawing.Size(30, 29);
             this.greenLineBtn.TabIndex = 15;
             this.greenLineBtn.UseVisualStyleBackColor = false;
+            this.greenLineBtn.Click += new System.EventHandler(this.greenLineBtn_Click);
             // 
             // purpleLineBtn
             // 
@@ -303,6 +511,7 @@
             this.purpleLineBtn.Size = new System.Drawing.Size(30, 29);
             this.purpleLineBtn.TabIndex = 14;
             this.purpleLineBtn.UseVisualStyleBackColor = false;
+            this.purpleLineBtn.Click += new System.EventHandler(this.purpleLineBtn_Click);
             // 
             // redLineBtn
             // 
@@ -312,6 +521,7 @@
             this.redLineBtn.Size = new System.Drawing.Size(30, 29);
             this.redLineBtn.TabIndex = 13;
             this.redLineBtn.UseVisualStyleBackColor = false;
+            this.redLineBtn.Click += new System.EventHandler(this.redLineBtn_Click);
             // 
             // orangeLineBtn
             // 
@@ -321,6 +531,7 @@
             this.orangeLineBtn.Size = new System.Drawing.Size(30, 29);
             this.orangeLineBtn.TabIndex = 12;
             this.orangeLineBtn.UseVisualStyleBackColor = false;
+            this.orangeLineBtn.Click += new System.EventHandler(this.orangeLineBtn_Click);
             // 
             // yellowLineBtn
             // 
@@ -330,6 +541,7 @@
             this.yellowLineBtn.Size = new System.Drawing.Size(30, 29);
             this.yellowLineBtn.TabIndex = 11;
             this.yellowLineBtn.UseVisualStyleBackColor = false;
+            this.yellowLineBtn.Click += new System.EventHandler(this.yellowLineBtn_Click);
             // 
             // whiteLineBtn
             // 
@@ -338,6 +550,7 @@
             this.whiteLineBtn.Size = new System.Drawing.Size(30, 29);
             this.whiteLineBtn.TabIndex = 1;
             this.whiteLineBtn.UseVisualStyleBackColor = true;
+            this.whiteLineBtn.Click += new System.EventHandler(this.whiteLineBtn_Click);
             // 
             // label2
             // 
@@ -386,6 +599,7 @@
             this.libBtn.TabIndex = 7;
             this.libBtn.Text = "Библиотечный алгоритм";
             this.libBtn.UseVisualStyleBackColor = false;
+            this.libBtn.Click += new System.EventHandler(this.libBtn_Click);
             // 
             // vuBtn
             // 
@@ -494,209 +708,23 @@
             this.exit.Size = new System.Drawing.Size(174, 24);
             this.exit.Text = "Выйти из программы";
             // 
-            // yEnd
-            // 
-            this.yEnd.DecimalPlaces = 2;
-            this.yEnd.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.yEnd.Location = new System.Drawing.Point(206, 476);
-            this.yEnd.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.yEnd.Name = "yEnd";
-            this.yEnd.Size = new System.Drawing.Size(66, 22);
-            this.yEnd.TabIndex = 29;
-            // 
-            // xEnd
-            // 
-            this.xEnd.DecimalPlaces = 2;
-            this.xEnd.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.xEnd.Location = new System.Drawing.Point(139, 476);
-            this.xEnd.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.xEnd.Name = "xEnd";
-            this.xEnd.Size = new System.Drawing.Size(65, 22);
-            this.xEnd.TabIndex = 28;
-            // 
-            // drawLineBtn
-            // 
-            this.drawLineBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.drawLineBtn.Location = new System.Drawing.Point(3, 504);
-            this.drawLineBtn.Name = "drawLineBtn";
-            this.drawLineBtn.Size = new System.Drawing.Size(269, 26);
-            this.drawLineBtn.TabIndex = 30;
-            this.drawLineBtn.Text = "Отрисовать линию";
-            this.drawLineBtn.UseVisualStyleBackColor = false;
-            this.drawLineBtn.Click += new System.EventHandler(this.drawLineBtn_Click);
-            // 
-            // drawSpecBtn
-            // 
-            this.drawSpecBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.drawSpecBtn.Location = new System.Drawing.Point(3, 612);
-            this.drawSpecBtn.Name = "drawSpecBtn";
-            this.drawSpecBtn.Size = new System.Drawing.Size(269, 26);
-            this.drawSpecBtn.TabIndex = 39;
-            this.drawSpecBtn.Text = "Отрисовать спектр";
-            this.drawSpecBtn.UseVisualStyleBackColor = false;
-            // 
-            // lengthSpec
-            // 
-            this.lengthSpec.DecimalPlaces = 2;
-            this.lengthSpec.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.lengthSpec.Location = new System.Drawing.Point(206, 584);
-            this.lengthSpec.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.lengthSpec.Name = "lengthSpec";
-            this.lengthSpec.Size = new System.Drawing.Size(66, 22);
-            this.lengthSpec.TabIndex = 38;
-            // 
-            // angleSpec
-            // 
-            this.angleSpec.DecimalPlaces = 2;
-            this.angleSpec.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.angleSpec.Location = new System.Drawing.Point(139, 584);
-            this.angleSpec.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.angleSpec.Name = "angleSpec";
-            this.angleSpec.Size = new System.Drawing.Size(65, 22);
-            this.angleSpec.TabIndex = 37;
-            // 
-            // yCenter
-            // 
-            this.yCenter.DecimalPlaces = 2;
-            this.yCenter.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.yCenter.Location = new System.Drawing.Point(70, 584);
-            this.yCenter.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.yCenter.Name = "yCenter";
-            this.yCenter.Size = new System.Drawing.Size(66, 22);
-            this.yCenter.TabIndex = 36;
-            // 
-            // xCenter
-            // 
-            this.xCenter.DecimalPlaces = 2;
-            this.xCenter.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.xCenter.Location = new System.Drawing.Point(3, 584);
-            this.xCenter.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.xCenter.Name = "xCenter";
-            this.xCenter.Size = new System.Drawing.Size(65, 22);
-            this.xCenter.TabIndex = 35;
-            // 
-            // label7
-            // 
-            this.label7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(206, 561);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 29);
-            this.label7.TabIndex = 34;
-            this.label7.Text = "Длина";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(137, 562);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 29);
-            this.label8.TabIndex = 33;
-            this.label8.Text = "Угол";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label9
-            // 
-            this.label9.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(71, 562);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(63, 29);
-            this.label9.TabIndex = 32;
-            this.label9.Text = "Уц";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label10
-            // 
-            this.label10.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(3, 562);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(63, 29);
-            this.label10.TabIndex = 31;
-            this.label10.Text = "Хц";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // drawLbl
-            // 
-            this.drawLbl.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.drawLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.drawLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.drawLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.drawLbl.Location = new System.Drawing.Point(3, 405);
-            this.drawLbl.Name = "drawLbl";
-            this.drawLbl.Size = new System.Drawing.Size(269, 41);
-            this.drawLbl.TabIndex = 40;
-            this.drawLbl.Text = "Отрисовка";
-            this.drawLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(277, 1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(999, 724);
+            this.pictureBox1.Size = new System.Drawing.Size(999, 750);
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 724);
+            this.ClientSize = new System.Drawing.Size(1276, 750);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.MainMenuStrip = this.menuStrip1;
@@ -704,16 +732,16 @@
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.yBeg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xBeg)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.yEnd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lengthSpec)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.angleSpec)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yCenter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xCenter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.yEnd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xEnd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.yBeg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xBeg)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -769,7 +797,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label drawLbl;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private CurALg
+        private Painter.DrawLineFunc drawFunc;
+        private List<(PointF, PointF, Color, Painter.DrawLineFunc)> lines;
+        private List<(PointF, float, float, Color, Painter.DrawLineFunc)> spectrums;
+        private Color backColor = Color.White;
+        private Color lineColor = Color.Red;
+        private System.Windows.Forms.Button button1;
     }
 }
 
