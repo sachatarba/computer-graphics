@@ -33,6 +33,12 @@ namespace lab3
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cancelBtn = new System.Windows.Forms.Button();
             this.drawLbl = new System.Windows.Forms.Label();
             this.drawSpecBtn = new System.Windows.Forms.Button();
             this.lengthSpec = new System.Windows.Forms.NumericUpDown();
@@ -80,6 +86,8 @@ namespace lab3
             this.infoAuthor = new System.Windows.Forms.ToolStripMenuItem();
             this.exit = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lengthSpec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.angleSpec)).BeginInit();
@@ -99,7 +107,14 @@ namespace lab3
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.checkBox6);
+            this.panel1.Controls.Add(this.checkBox5);
+            this.panel1.Controls.Add(this.checkBox4);
+            this.panel1.Controls.Add(this.checkBox3);
+            this.panel1.Controls.Add(this.checkBox2);
+            this.panel1.Controls.Add(this.cancelBtn);
             this.panel1.Controls.Add(this.drawLbl);
             this.panel1.Controls.Add(this.drawSpecBtn);
             this.panel1.Controls.Add(this.lengthSpec);
@@ -151,13 +166,76 @@ namespace lab3
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(3, 720);
+            this.button1.Location = new System.Drawing.Point(4, 688);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(269, 26);
-            this.button1.TabIndex = 41;
-            this.button1.Text = "Очистка экрана";
+            this.button1.TabIndex = 48;
+            this.button1.Text = "Замеры времени";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.CancelBtn_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(249, 245);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(18, 17);
+            this.checkBox6.TabIndex = 47;
+            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.Click += new System.EventHandler(this.checkBox1_Click);
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(249, 213);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(18, 17);
+            this.checkBox5.TabIndex = 46;
+            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.Click += new System.EventHandler(this.checkBox1_Click);
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(250, 181);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(18, 17);
+            this.checkBox4.TabIndex = 45;
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.Click += new System.EventHandler(this.checkBox1_Click);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(250, 149);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(18, 17);
+            this.checkBox3.TabIndex = 44;
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.Click += new System.EventHandler(this.checkBox1_Click);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(250, 118);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(18, 17);
+            this.checkBox2.TabIndex = 43;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.Click += new System.EventHandler(this.checkBox1_Click);
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cancelBtn.Location = new System.Drawing.Point(3, 720);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(269, 26);
+            this.cancelBtn.TabIndex = 41;
+            this.cancelBtn.Text = "Очистка экрана";
+            this.cancelBtn.UseVisualStyleBackColor = false;
+            this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // drawLbl
             // 
@@ -185,7 +263,7 @@ namespace lab3
             // 
             // lengthSpec
             // 
-            this.lengthSpec.DecimalPlaces = 2;
+            this.lengthSpec.DecimalPlaces = 1;
             this.lengthSpec.Increment = new decimal(new int[] {
             10,
             0,
@@ -193,7 +271,7 @@ namespace lab3
             0});
             this.lengthSpec.Location = new System.Drawing.Point(206, 584);
             this.lengthSpec.Maximum = new decimal(new int[] {
-            1000,
+            999,
             0,
             0,
             0});
@@ -203,15 +281,9 @@ namespace lab3
             // 
             // angleSpec
             // 
-            this.angleSpec.DecimalPlaces = 2;
-            this.angleSpec.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.angleSpec.Location = new System.Drawing.Point(139, 584);
             this.angleSpec.Maximum = new decimal(new int[] {
-            1000,
+            360,
             0,
             0,
             0});
@@ -221,7 +293,7 @@ namespace lab3
             // 
             // yCenter
             // 
-            this.yCenter.DecimalPlaces = 2;
+            this.yCenter.DecimalPlaces = 1;
             this.yCenter.Increment = new decimal(new int[] {
             10,
             0,
@@ -229,17 +301,22 @@ namespace lab3
             0});
             this.yCenter.Location = new System.Drawing.Point(70, 584);
             this.yCenter.Maximum = new decimal(new int[] {
-            1000,
+            999,
             0,
             0,
             0});
+            this.yCenter.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
             this.yCenter.Name = "yCenter";
             this.yCenter.Size = new System.Drawing.Size(66, 22);
             this.yCenter.TabIndex = 36;
             // 
             // xCenter
             // 
-            this.xCenter.DecimalPlaces = 2;
+            this.xCenter.DecimalPlaces = 1;
             this.xCenter.Increment = new decimal(new int[] {
             10,
             0,
@@ -247,10 +324,15 @@ namespace lab3
             0});
             this.xCenter.Location = new System.Drawing.Point(3, 584);
             this.xCenter.Maximum = new decimal(new int[] {
-            1000,
+            999,
             0,
             0,
             0});
+            this.xCenter.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
             this.xCenter.Name = "xCenter";
             this.xCenter.Size = new System.Drawing.Size(65, 22);
             this.xCenter.TabIndex = 35;
@@ -316,7 +398,7 @@ namespace lab3
             // 
             // yEnd
             // 
-            this.yEnd.DecimalPlaces = 2;
+            this.yEnd.DecimalPlaces = 1;
             this.yEnd.Increment = new decimal(new int[] {
             10,
             0,
@@ -324,17 +406,22 @@ namespace lab3
             0});
             this.yEnd.Location = new System.Drawing.Point(206, 476);
             this.yEnd.Maximum = new decimal(new int[] {
-            1000,
+            999,
             0,
             0,
             0});
+            this.yEnd.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
             this.yEnd.Name = "yEnd";
             this.yEnd.Size = new System.Drawing.Size(66, 22);
             this.yEnd.TabIndex = 29;
             // 
             // xEnd
             // 
-            this.xEnd.DecimalPlaces = 2;
+            this.xEnd.DecimalPlaces = 1;
             this.xEnd.Increment = new decimal(new int[] {
             10,
             0,
@@ -342,17 +429,22 @@ namespace lab3
             0});
             this.xEnd.Location = new System.Drawing.Point(139, 476);
             this.xEnd.Maximum = new decimal(new int[] {
-            1000,
+            999,
             0,
             0,
             0});
+            this.xEnd.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
             this.xEnd.Name = "xEnd";
             this.xEnd.Size = new System.Drawing.Size(65, 22);
             this.xEnd.TabIndex = 28;
             // 
             // yBeg
             // 
-            this.yBeg.DecimalPlaces = 2;
+            this.yBeg.DecimalPlaces = 1;
             this.yBeg.Increment = new decimal(new int[] {
             10,
             0,
@@ -360,17 +452,22 @@ namespace lab3
             0});
             this.yBeg.Location = new System.Drawing.Point(70, 476);
             this.yBeg.Maximum = new decimal(new int[] {
-            1000,
+            999,
             0,
             0,
             0});
+            this.yBeg.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
             this.yBeg.Name = "yBeg";
             this.yBeg.Size = new System.Drawing.Size(66, 22);
             this.yBeg.TabIndex = 27;
             // 
             // xBeg
             // 
-            this.xBeg.DecimalPlaces = 2;
+            this.xBeg.DecimalPlaces = 1;
             this.xBeg.Increment = new decimal(new int[] {
             10,
             0,
@@ -378,10 +475,15 @@ namespace lab3
             0});
             this.xBeg.Location = new System.Drawing.Point(3, 476);
             this.xBeg.Maximum = new decimal(new int[] {
-            1000,
+            999,
             0,
             0,
             0});
+            this.xBeg.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
             this.xBeg.Name = "xBeg";
             this.xBeg.Size = new System.Drawing.Size(65, 22);
             this.xBeg.TabIndex = 26;
@@ -611,6 +713,7 @@ namespace lab3
             this.vuBtn.TabIndex = 6;
             this.vuBtn.Text = "Ву";
             this.vuBtn.UseVisualStyleBackColor = false;
+            this.vuBtn.Click += new System.EventHandler(this.vuBtn_Click);
             // 
             // brezAdBtn
             // 
@@ -622,6 +725,7 @@ namespace lab3
             this.brezAdBtn.TabIndex = 5;
             this.brezAdBtn.Text = "Брезенхем с устр. ступенчатости";
             this.brezAdBtn.UseVisualStyleBackColor = false;
+            this.brezAdBtn.Click += new System.EventHandler(this.brezAdBtn_Click);
             // 
             // brezIntBtn
             // 
@@ -633,6 +737,7 @@ namespace lab3
             this.brezIntBtn.TabIndex = 4;
             this.brezIntBtn.Text = "целочисленный Брезенхем";
             this.brezIntBtn.UseVisualStyleBackColor = false;
+            this.brezIntBtn.Click += new System.EventHandler(this.brezIntBtn_Click);
             // 
             // brezFloatBtn
             // 
@@ -644,6 +749,7 @@ namespace lab3
             this.brezFloatBtn.TabIndex = 3;
             this.brezFloatBtn.Text = "вещественный Брезенхем";
             this.brezFloatBtn.UseVisualStyleBackColor = false;
+            this.brezFloatBtn.Click += new System.EventHandler(this.brezFloatBtn_Click);
             // 
             // cdaBtn
             // 
@@ -655,6 +761,7 @@ namespace lab3
             this.cdaBtn.TabIndex = 2;
             this.cdaBtn.Text = "ЦДА";
             this.cdaBtn.UseVisualStyleBackColor = false;
+            this.cdaBtn.Click += new System.EventHandler(this.cdaBtn_Click);
             // 
             // label1
             // 
@@ -677,7 +784,7 @@ namespace lab3
             this.exit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(273, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(273, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -687,7 +794,7 @@ namespace lab3
             this.infoTask,
             this.infoAuthor});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(65, 24);
+            this.menu.Size = new System.Drawing.Size(65, 26);
             this.menu.Text = "Меню";
             // 
             // infoTask
@@ -705,7 +812,7 @@ namespace lab3
             // exit
             // 
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(174, 24);
+            this.exit.Size = new System.Drawing.Size(174, 26);
             this.exit.Text = "Выйти из программы";
             // 
             // pictureBox1
@@ -720,16 +827,39 @@ namespace lab3
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(251, 86);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(18, 17);
+            this.checkBox1.TabIndex = 42;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Click += new System.EventHandler(this.checkBox1_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button2.Location = new System.Drawing.Point(3, 656);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(269, 26);
+            this.button2.TabIndex = 49;
+            this.button2.Text = "Замеры ступенчатости";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 750);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lengthSpec)).EndInit();
@@ -744,6 +874,7 @@ namespace lab3
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -802,7 +933,15 @@ namespace lab3
         private List<(PointF, float, float, Color, Painter.DrawLineFunc)> spectrums;
         private Color backColor = Color.White;
         private Color lineColor = Color.Red;
+        private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

@@ -33,8 +33,7 @@ namespace lab3
         public static void DrawScene(Graphics g, List<(PointF, PointF, Color, DrawLineFunc)> lines, 
             List<(PointF, float, float, Color, DrawLineFunc)> spectrums, Color backColor)
         {
-            g.Clear(backColor);
-            
+
             foreach (var line in lines)
             {
                 line.Item4(g, line.Item1, line.Item2, line.Item3);
@@ -46,5 +45,68 @@ namespace lab3
             }
         }
 
+        public static void DrawBrezenhemFloat(Graphics g, PointF point1, PointF point2, Color color)
+        {
+            var listPoints = Brezenhem.BrezenhemFloat(point1.X, point1.Y, point2.X, point2.Y, color, out int steps);
+            foreach (var point in listPoints)
+            {
+                Pen pen= new Pen(point.Item2);
+                g.DrawEllipse(pen, point.Item1.X, point.Item1.Y, 1f, 1f);
+            }
+        }
+
+        public static void DrawBrezenhemInteger(Graphics g, PointF point1, PointF point2, Color color)
+        {
+            var listPoints = Brezenhem.BrezenhemInteger(Convert.ToInt32(point1.X), Convert.ToInt32(point1.Y)
+                , Convert.ToInt32(point2.X), Convert.ToInt32(point2.Y)
+                , color, out int steps);
+
+            foreach (var point in listPoints)
+            {
+                Pen pen = new Pen(point.Item2);
+                g.DrawEllipse(pen, point.Item1.X, point.Item1.Y, 1, 1);
+            }
+        }
+
+
+        public static void DrawBrezenhemSmooth(Graphics g, PointF point1, PointF point2, Color color)
+        {
+            var listPoints = Brezenhem.BrezenhemSmooth(point1.X, point1.Y
+                , point2.X, point2.Y
+                , color, out int steps);
+
+            foreach (var point in listPoints)
+            {
+                Pen pen = new Pen(point.Item2);
+                g.DrawEllipse(pen, point.Item1.X, point.Item1.Y, 1, 1);
+            }
+        }
+
+        public static void DrawDda(Graphics g, PointF point1, PointF point2, Color color)
+        {
+            var listPoints = DDA.Dda(Convert.ToInt32(point1.X), Convert.ToInt32(point1.Y)
+                , Convert.ToInt32(point2.X), Convert.ToInt32(point2.Y)
+                , color, out int steps);
+
+            foreach (var point in listPoints)
+            {
+                Pen pen = new Pen(point.Item2);
+                g.DrawEllipse(pen, point.Item1.X, point.Item1.Y, 1, 1);
+            }
+        }
+
+
+        public static void DrawVu(Graphics g, PointF point1, PointF point2, Color color)
+        {
+            var listPoints = VU.Vu(point1.X, point1.Y
+                ,point2.X, point2.Y
+                , color, out int steps);
+
+            foreach (var point in listPoints)
+            {
+                Pen pen = new Pen(point.Item2);
+                g.DrawEllipse(pen, point.Item1.X, point.Item1.Y, 1, 1);
+            }
+        }
     }
 }
