@@ -17,11 +17,9 @@ namespace lab4
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            drawObjects = new List<IDrawable>();
+            lineColor = Color.Black;
+            backColor = Color.White;
         }
 
         private void whiteBackColor_Click(object sender, EventArgs e)
@@ -68,24 +66,20 @@ namespace lab4
 
         private void drawLineBtn_Click(object sender, EventArgs e)
         {
-            //if (drawFunc == null)
-            //{
-            //    MessageBox.Show("Выберите алгоритм отрисовки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-
-            if (Convert.ToSingle(xBeg.Value) == Convert.ToSingle(xEnd.Value) &&
-                Convert.ToSingle(yBeg.Value) == Convert.ToSingle(yEnd.Value))
+            if (drawFunc == null)
             {
-                MessageBox.Show("Введите координаты не вырожденной прямой", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Выберите алгоритм отрисовки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            //lines.Add(
-            //    (new PointF(Convert.ToSingle(xBeg.Value), -Convert.ToSingle(yBeg.Value)),
-            //     new PointF(Convert.ToSingle(xEnd.Value), -Convert.ToSingle(yEnd.Value)),
-            //     lineColor, drawFunc));
+            if (Convert.ToInt32(circleRadius.Value) <= 0) 
+            {
+                MessageBox.Show("Неверный ввод радиуса", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            drawObjects.Add(new ColoredCircle(new PointF(Convert.ToSingle(xCenter.Value),
+                Convert.ToSingle(yCenter.Value)), Convert.ToInt32(circleRadius.Value), lineColor, drawFunc));
             pictureBox1.Refresh();
         }
 
@@ -122,7 +116,7 @@ namespace lab4
         private void DrawGrid(Graphics g)
         {
             Pen arrow = new Pen(Color.Gray, 2);
-            arrow.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            //arrow.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             arrow.CustomStartCap = new AdjustableArrowCap(6, 6);
 
             Pen pen = new Pen(Color.Gray, 1);
@@ -153,93 +147,57 @@ namespace lab4
             e.Graphics.TranslateTransform(pictureBox1.Width / 2f, pictureBox1.Height / 2f);
             e.Graphics.Clear(backColor);
             DrawGrid(e.Graphics);
-            //Painter.DrawScene(e.Graphics, lines, spectrums, backColor);
-            //e.Graphics.DrawLine(new Pen(Color.Red), 0, 40, 0, 0);
+            Painter.DrawScene(e.Graphics, drawObjects);
         }
 
         private void libBtn_Click(object sender, EventArgs e)
         {
-            //drawFunc = Painter.DrawLineLib;
+            drawFunc = Painter.DrawEllipseLib;
             SetUnChecked();
+            checkBox5.Checked = true;
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
-            //lines.Clear();
-            //spectrums.Clear();
+            drawObjects.Clear();
             pictureBox1.Refresh();
         }
 
-        private void drawSpecBtn_Click(object sender, EventArgs e)
-        {
-            //if (drawFunc == null)
-            //{
-            //    MessageBox.Show("Выберите алгоритм отрисовки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
+        //private void drawSpecBtn_Click(object sender, EventArgs e)
+        //{
+        //    //if (drawFunc == null)
+        //    //{
+        //    //    MessageBox.Show("Выберите алгоритм отрисовки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    //    return;
+        //    //}
 
-            if (lengthSpec.Value == 0)
-            {
-                MessageBox.Show("Введите ненулевую длину отрезка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+        //    if (lengthSpec.Value == 0)
+        //    {
+        //        MessageBox.Show("Введите ненулевую длину отрезка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return;
+        //    }
 
-            if (angleSpec.Value == 0)
-            {
-                MessageBox.Show("Введите ненулевой угол", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+        //    if (angleSpec.Value == 0)
+        //    {
+        //        MessageBox.Show("Введите ненулевой угол", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return;
+        //    }
 
-            if (angleSpec.Value > 180)
-            {
-                MessageBox.Show("Введите меньший угол", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+        //    if (angleSpec.Value > 180)
+        //    {
+        //        MessageBox.Show("Введите меньший угол", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return;
+        //    }
 
-            //Painter.DrawSpectrum(e)
-            PointF center = new PointF(Convert.ToSingle(xCenter.Value), -Convert.ToSingle(yCenter.Value));
-            //spectrums.Add((center, Convert.ToSingle(lengthSpec.Value), Convert.ToSingle(angleSpec.Value), lineColor, drawFunc));
-            pictureBox1.Refresh();
-        }
+        //    //Painter.DrawSpectrum(e)
+        //    PointF center = new PointF(Convert.ToSingle(xCenter.Value), -Convert.ToSingle(yCenter.Value));
+        //    //spectrums.Add((center, Convert.ToSingle(lengthSpec.Value), Convert.ToSingle(angleSpec.Value), lineColor, drawFunc));
+        //    pictureBox1.Refresh();
+        //}
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
-        }
-
-        private void brezFloatBtn_Click(object sender, EventArgs e)
-        {
-            //drawFunc = Painter.DrawBrezenhemFloat;
-            SetUnChecked();
-            checkBox2.Checked = true;
-        }
-
-        private void brezIntBtn_Click(object sender, EventArgs e)
-        {
-            //drawFunc = Painter.DrawBrezenhemInteger;
-            SetUnChecked();
-            checkBox3.Checked = true;
-        }
-
-        private void brezAdBtn_Click(object sender, EventArgs e)
-        {
-            //drawFunc = Painter.DrawBrezenhemSmooth;
-            SetUnChecked();
-            checkBox4.Checked = true;
-        }
-
-        private void cdaBtn_Click(object sender, EventArgs e)
-        {
-            //drawFunc = Painter.DrawDda;
-            SetUnChecked();
-            checkBox1.Checked = true;
-        }
-
-        private void vuBtn_Click(object sender, EventArgs e)
-        {
-            //drawFunc = Painter.DrawVu;
-            SetUnChecked();
-            checkBox5.Checked = true;
         }
 
         private void checkBox1_Click(object sender, EventArgs e)
@@ -257,32 +215,27 @@ namespace lab4
             checkBox5.Checked = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void DrawEllipse_Click(object sender, EventArgs e)
         {
-            //Plot plot = new Plot();
+            if (drawFunc == null)
+            {
+                MessageBox.Show("Выберите алгоритм отрисовки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            //plot.ShowDialog();
-        }
+            if (Convert.ToInt32(ellipseHeight.Value) <= 0 || Convert.ToInt32(ellipseWidth.Value) <= 0)
+            {
+                MessageBox.Show("Неверные размеры эллипса", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //PlotsSteps plotsSteps = new PlotsSteps();
-            //plotsSteps.ShowDialog();
-        }
+            drawObjects.Add(new ColoredEllipse(new PointF(Convert.ToSingle(xCenter.Value),
+                Convert.ToSingle(yCenter.Value)), Convert.ToInt32(ellipseHeight.Value), Convert.ToInt32(ellipseWidth.Value), lineColor, drawFunc));
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
+            //MessageBox.Show($"{drawObjects.Count}");
+            //MessageBox.Show($"{circleRadius.Value}");
 
-        }
-
-        private void yEnd_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
+            pictureBox1.Refresh();
         }
     }
 }
