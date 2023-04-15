@@ -161,7 +161,6 @@ namespace lab4
         {
             //drawFunc = Painter.DrawLineLib;
             SetUnChecked();
-            checkBox6.Checked = true;
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
@@ -256,7 +255,6 @@ namespace lab4
             checkBox3.Checked = false;
             checkBox4.Checked = false;
             checkBox5.Checked = false;
-            checkBox6.Checked = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -270,6 +268,21 @@ namespace lab4
         {
             //PlotsSteps plotsSteps = new PlotsSteps();
             //plotsSteps.ShowDialog();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void yEnd_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
