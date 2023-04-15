@@ -160,7 +160,6 @@ namespace lab3
 
             while (x != x2 || y != y2)
             {
-
                 if (!stepmode)
                 {
                     pointsList.Add((new Point(x, y), color));
