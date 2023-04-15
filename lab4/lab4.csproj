@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Brezenhem.cs" />
     <Compile Include="ColoredCircle.cs" />
     <Compile Include="ColoredEllipse.cs" />
     <Compile Include="IDrawable.cs" />

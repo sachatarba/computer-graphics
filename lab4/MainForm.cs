@@ -64,9 +64,9 @@ namespace lab4
             pictureBox1.Refresh();
         }
 
-        private void DrawLineBtn_Click(object sender, EventArgs e)
+        private void DrawCircleBtn_Click(object sender, EventArgs e)
         {
-            if (drawFunc == null)
+            if (drawCircleFunc == null)
             {
                 MessageBox.Show("Выберите алгоритм отрисовки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -79,7 +79,7 @@ namespace lab4
             }
 
             drawObjects.Add(new ColoredCircle(new PointF(Convert.ToSingle(xCenter.Value),
-                Convert.ToSingle(yCenter.Value)), Convert.ToInt32(circleRadius.Value), lineColor, drawFunc));
+                Convert.ToSingle(yCenter.Value)), Convert.ToInt32(circleRadius.Value), lineColor, drawCircleFunc));
             pictureBox1.Refresh();
         }
 
@@ -152,7 +152,8 @@ namespace lab4
 
         private void LibBtn_Click(object sender, EventArgs e)
         {
-            drawFunc = Painter.DrawEllipseLib;
+            drawEllipseFunc = Painter.DrawEllipseLib;
+            drawCircleFunc = Painter.DrawEllipseLib;
             SetUnChecked();
             checkBox5.Checked = true;
         }
@@ -185,7 +186,7 @@ namespace lab4
 
         private void DrawEllipse_Click(object sender, EventArgs e)
         {
-            if (drawFunc == null)
+            if (drawEllipseFunc == null)
             {
                 MessageBox.Show("Выберите алгоритм отрисовки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -198,7 +199,7 @@ namespace lab4
             }
 
             drawObjects.Add(new ColoredEllipse(new PointF(Convert.ToSingle(xCenter.Value),
-                Convert.ToSingle(yCenter.Value)), Convert.ToInt32(ellipseHeight.Value), Convert.ToInt32(ellipseWidth.Value), lineColor, drawFunc));
+                Convert.ToSingle(yCenter.Value)), Convert.ToInt32(ellipseHeight.Value), Convert.ToInt32(ellipseWidth.Value), lineColor, drawEllipseFunc));
 
 
             pictureBox1.Refresh();
@@ -206,7 +207,7 @@ namespace lab4
 
         private void DrawSetOfCircles_Click(object sender, EventArgs e)
         {
-            if (drawFunc == null)
+            if (drawCircleFunc == null)
             {
                 MessageBox.Show("Выберите алгоритм отрисовки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -241,7 +242,7 @@ namespace lab4
                 for (int i = 0; i < number; ++i)
                 {
                     drawObjects.Add(new ColoredCircle(new PointF(x, y),
-                        startRadius, lineColor, drawFunc));
+                        startRadius, lineColor, drawCircleFunc));
                     startRadius += step;
                 }
             }
@@ -256,7 +257,7 @@ namespace lab4
                 while (startRadius <= endRadius)
                 {
                     drawObjects.Add(new ColoredCircle(new PointF(x, y),
-                        startRadius, lineColor, drawFunc));
+                        startRadius, lineColor, drawCircleFunc));
                     startRadius += step;
                 }
             }
@@ -266,7 +267,7 @@ namespace lab4
 
         private void DrawSetOfEllipses_Click(object sender, EventArgs e)
         {
-            if (drawFunc == null)
+            if (drawEllipseFunc == null)
             {
                 MessageBox.Show("Выберите алгоритм отрисовки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -316,7 +317,7 @@ namespace lab4
                 for (int i = 0; i < number; ++i)
                 {
                     drawObjects.Add(new ColoredEllipse(new PointF(x, y),
-                        startHeight, startWidth, lineColor, drawFunc));
+                        startHeight, startWidth, lineColor, drawEllipseFunc));
                     startHeight += step;
                     startWidth += step;
                 }
@@ -331,13 +332,21 @@ namespace lab4
                 while (startWidth <= endWidth && startHeight <= endHeight)
                 {
                     drawObjects.Add(new ColoredEllipse(new PointF(x, y),
-                        startHeight, startWidth, lineColor, drawFunc));
+                        startHeight, startWidth, lineColor, drawEllipseFunc));
                     startHeight += step;
                     startWidth += step;
                 }
             }
 
             pictureBox1.Refresh();
+        }
+
+        private void BrezenhemBtn_Click(object sender, EventArgs e)
+        {
+            SetUnChecked();
+            checkBox4.Checked = true;
+            drawCircleFunc = Painter.DrawCircleBrezenhem;
+            drawEllipseFunc = Painter.DrawEllipseBrezenhem;
         }
     }
 }

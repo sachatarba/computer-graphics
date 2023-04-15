@@ -14,8 +14,29 @@ namespace lab4
         public static void DrawEllipseLib(Graphics g, PointF center, int width, int height, Color color)
         {
             Pen pen = new Pen(color);
-            //Pen pen = new Pen(Color.Black);
             g.DrawEllipse(pen, center.X - width, center.Y - height, width * 2, height * 2);
+        }
+
+        public static void DrawCircleBrezenhem(Graphics g, PointF center, int width, int heigth, Color color)
+        {
+            Pen pen = new Pen(color);
+            List<Point> points = Brezenhem.GetPointsByOctant(new Point(Convert.ToInt32(center.X), Convert.ToInt32(center.Y)), width);
+
+            foreach (Point point in points)
+            {
+                g.DrawEllipse(pen, point.X, point.Y, 1, 1);
+            }
+        }
+
+        public static void DrawEllipseBrezenhem(Graphics g, PointF center, int width, int heigth, Color color)
+        {
+            Pen pen = new Pen(color);
+            List<Point> points = Brezenhem.GetPointsForEllipse(new Point(Convert.ToInt32(center.X), Convert.ToInt32(center.Y)), heigth, width);
+
+            foreach (Point point in points)
+            {
+                g.DrawEllipse(pen, point.X, point.Y, 1, 1);
+            }
         }
 
         public static void DrawScene(Graphics g, List<IDrawable> drawablesObjects)
@@ -24,6 +45,37 @@ namespace lab4
             {
                 drawable.DrawObject(g);
             } 
+        }
+
+        public static List<Point> ReflectPointsOfCircle(Point point, Point center)
+        {
+            List<Point> points = new List<Point>();
+
+            points.Add(new Point(point.Y - center.Y + center.X, point.X - center.X + center.Y));
+            points.Add(new Point(-point.Y + center.Y + center.X, point.X - center.X + center.Y));
+            points.Add(new Point(point.Y - center.Y + center.X, -point.X + center.X + center.Y));
+            points.Add(new Point(-point.Y + center.Y + center.X, -point.X + center.X + center.Y));
+
+
+            points.Add(new Point(point.X, point.Y));
+            points.Add(new Point(-point.X + 2 * center.X, point.Y));
+            points.Add(new Point(point.X, -point.Y + 2 * center.Y));
+            points.Add(new Point(-point.X + 2 * center.X, -point.Y + 2 * center.Y));
+
+            return points;
+        }
+
+
+        public static List<Point> ReflectPointsOfEllipse(Point point, Point center)
+        {
+            List<Point> points = new List<Point>();
+
+            points.Add(new Point(point.X, point.Y));
+            points.Add(new Point(-point.X + 2 * center.X, point.Y));
+            points.Add(new Point(point.X, -point.Y + 2 * center.Y));
+            points.Add(new Point(-point.X + 2 * center.X, -point.Y + 2 * center.Y));
+
+            return points;
         }
     }
 }

@@ -33,6 +33,8 @@ namespace lab4
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cancelBtn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.figureNumber = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -63,12 +65,10 @@ namespace lab4
             this.circleRadius = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.drawLineBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.cancelBtn = new System.Windows.Forms.Button();
             this.drawLbl = new System.Windows.Forms.Label();
             this.yCenter = new System.Windows.Forms.NumericUpDown();
             this.xCenter = new System.Windows.Forms.NumericUpDown();
@@ -176,6 +176,31 @@ namespace lab4
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(275, 839);
             this.panel1.TabIndex = 0;
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cancelBtn.Location = new System.Drawing.Point(3, 809);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(269, 26);
+            this.cancelBtn.TabIndex = 41;
+            this.cancelBtn.Text = "Очистка экрана";
+            this.cancelBtn.UseVisualStyleBackColor = false;
+            this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(4, 775);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(266, 28);
+            this.button1.TabIndex = 48;
+            this.button1.Text = "Замеры времени";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // figureNumber
             // 
@@ -595,19 +620,7 @@ namespace lab4
             this.drawLineBtn.TabIndex = 30;
             this.drawLineBtn.Text = "Отрисовать линию";
             this.drawLineBtn.UseVisualStyleBackColor = false;
-            this.drawLineBtn.Click += new System.EventHandler(this.DrawLineBtn_Click);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(4, 775);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(266, 28);
-            this.button1.TabIndex = 48;
-            this.button1.Text = "Замеры времени";
-            this.button1.UseVisualStyleBackColor = false;
+            this.drawLineBtn.Click += new System.EventHandler(this.DrawCircleBtn_Click);
             // 
             // checkBox5
             // 
@@ -648,19 +661,6 @@ namespace lab4
             this.checkBox2.TabIndex = 43;
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.Click += new System.EventHandler(this.CheckBox1_Click);
-            // 
-            // cancelBtn
-            // 
-            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.cancelBtn.Location = new System.Drawing.Point(3, 809);
-            this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(269, 26);
-            this.cancelBtn.TabIndex = 41;
-            this.cancelBtn.Text = "Очистка экрана";
-            this.cancelBtn.UseVisualStyleBackColor = false;
-            this.cancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // drawLbl
             // 
@@ -922,6 +922,7 @@ namespace lab4
             this.brezenhemBtn.TabIndex = 5;
             this.brezenhemBtn.Text = "Алгоритм Брезенхема";
             this.brezenhemBtn.UseVisualStyleBackColor = false;
+            this.brezenhemBtn.Click += new System.EventHandler(this.BrezenhemBtn_Click);
             // 
             // midpointBtn
             // 
@@ -977,7 +978,7 @@ namespace lab4
             this.exit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(273, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(273, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1107,7 +1108,8 @@ namespace lab4
         private System.Windows.Forms.NumericUpDown circleRadius;
         private System.Windows.Forms.Label drawLbl;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private Painter.DrawEllipseFunc drawFunc;
+        private Painter.DrawEllipseFunc drawCircleFunc;
+        private Painter.DrawEllipseFunc drawEllipseFunc;
         private List<IDrawable> drawObjects;
         //private List<(PointF, PointF, Color, Painter.DrawLineFunc)> lines;
         //private List<(PointF, float, float, Color, Painter.DrawLineFunc)> spectrums;
