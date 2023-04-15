@@ -22,49 +22,49 @@ namespace lab4
             backColor = Color.White;
         }
 
-        private void whiteBackColor_Click(object sender, EventArgs e)
+        private void WhiteBackColor_Click(object sender, EventArgs e)
         {
             pictureBox1.BackColor = Color.White;
             backColor = Color.White;
             pictureBox1.Refresh();
         }
 
-        private void yellowBackBtn_Click(object sender, EventArgs e)
+        private void YellowBackBtn_Click(object sender, EventArgs e)
         {
             pictureBox1.BackColor = Color.Yellow;
             backColor = Color.Yellow;
             pictureBox1.Refresh();
         }
 
-        private void orangeBackBtn_Click(object sender, EventArgs e)
+        private void OrangeBackBtn_Click(object sender, EventArgs e)
         {
             pictureBox1.BackColor = Color.Orange;
             backColor = Color.Orange;
             pictureBox1.Refresh();
         }
 
-        private void redBackBtn_Click(object sender, EventArgs e)
+        private void RedBackBtn_Click(object sender, EventArgs e)
         {
             pictureBox1.BackColor = Color.Red;
             backColor = Color.Red;
             pictureBox1.Refresh();
         }
 
-        private void purpleBackBtn_Click(object sender, EventArgs e)
+        private void PurpleBackBtn_Click(object sender, EventArgs e)
         {
             pictureBox1.BackColor = Color.Purple;
             backColor = Color.Purple;
             pictureBox1.Refresh();
         }
 
-        private void greenBackBtn_Click(object sender, EventArgs e)
+        private void GreenBackBtn_Click(object sender, EventArgs e)
         {
             pictureBox1.BackColor = Color.Green;
             backColor = Color.Green;
             pictureBox1.Refresh();
         }
 
-        private void drawLineBtn_Click(object sender, EventArgs e)
+        private void DrawLineBtn_Click(object sender, EventArgs e)
         {
             if (drawFunc == null)
             {
@@ -83,32 +83,32 @@ namespace lab4
             pictureBox1.Refresh();
         }
 
-        private void whiteLineBtn_Click(object sender, EventArgs e)
+        private void WhiteLineBtn_Click(object sender, EventArgs e)
         {
             lineColor = Color.White;
         }
 
-        private void yellowLineBtn_Click(object sender, EventArgs e)
+        private void YellowLineBtn_Click(object sender, EventArgs e)
         {
             lineColor = Color.Yellow;
         }
 
-        private void orangeLineBtn_Click(object sender, EventArgs e)
+        private void OrangeLineBtn_Click(object sender, EventArgs e)
         {
             lineColor = Color.Orange;
         }
 
-        private void redLineBtn_Click(object sender, EventArgs e)
+        private void RedLineBtn_Click(object sender, EventArgs e)
         {
             lineColor = Color.Red;
         }
 
-        private void purpleLineBtn_Click(object sender, EventArgs e)
+        private void PurpleLineBtn_Click(object sender, EventArgs e)
         {
             lineColor = Color.Purple;
         }
 
-        private void greenLineBtn_Click(object sender, EventArgs e)
+        private void GreenLineBtn_Click(object sender, EventArgs e)
         {
             lineColor = Color.Green;
         }
@@ -142,7 +142,7 @@ namespace lab4
 
         }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.TranslateTransform(pictureBox1.Width / 2f, pictureBox1.Height / 2f);
             e.Graphics.Clear(backColor);
@@ -150,7 +150,7 @@ namespace lab4
             Painter.DrawScene(e.Graphics, drawObjects);
         }
 
-        private void libBtn_Click(object sender, EventArgs e)
+        private void LibBtn_Click(object sender, EventArgs e)
         {
             drawFunc = Painter.DrawEllipseLib;
             SetUnChecked();
@@ -163,44 +163,12 @@ namespace lab4
             pictureBox1.Refresh();
         }
 
-        //private void drawSpecBtn_Click(object sender, EventArgs e)
-        //{
-        //    //if (drawFunc == null)
-        //    //{
-        //    //    MessageBox.Show("Выберите алгоритм отрисовки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    //    return;
-        //    //}
-
-        //    if (lengthSpec.Value == 0)
-        //    {
-        //        MessageBox.Show("Введите ненулевую длину отрезка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    if (angleSpec.Value == 0)
-        //    {
-        //        MessageBox.Show("Введите ненулевой угол", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    if (angleSpec.Value > 180)
-        //    {
-        //        MessageBox.Show("Введите меньший угол", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        return;
-        //    }
-
-        //    //Painter.DrawSpectrum(e)
-        //    PointF center = new PointF(Convert.ToSingle(xCenter.Value), -Convert.ToSingle(yCenter.Value));
-        //    //spectrums.Add((center, Convert.ToSingle(lengthSpec.Value), Convert.ToSingle(angleSpec.Value), lineColor, drawFunc));
-        //    pictureBox1.Refresh();
-        //}
-
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
         }
 
-        private void checkBox1_Click(object sender, EventArgs e)
+        private void CheckBox1_Click(object sender, EventArgs e)
         {
             if (sender is CheckBox)
                 ((CheckBox)sender).Checked = !((CheckBox)sender).Checked;

@@ -595,7 +595,7 @@ namespace lab4
             this.drawLineBtn.TabIndex = 30;
             this.drawLineBtn.Text = "Отрисовать линию";
             this.drawLineBtn.UseVisualStyleBackColor = false;
-            this.drawLineBtn.Click += new System.EventHandler(this.drawLineBtn_Click);
+            this.drawLineBtn.Click += new System.EventHandler(this.DrawLineBtn_Click);
             // 
             // button1
             // 
@@ -617,7 +617,7 @@ namespace lab4
             this.checkBox5.Size = new System.Drawing.Size(18, 17);
             this.checkBox5.TabIndex = 46;
             this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.Click += new System.EventHandler(this.checkBox1_Click);
+            this.checkBox5.Click += new System.EventHandler(this.CheckBox1_Click);
             // 
             // checkBox4
             // 
@@ -627,7 +627,7 @@ namespace lab4
             this.checkBox4.Size = new System.Drawing.Size(18, 17);
             this.checkBox4.TabIndex = 45;
             this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.Click += new System.EventHandler(this.checkBox1_Click);
+            this.checkBox4.Click += new System.EventHandler(this.CheckBox1_Click);
             // 
             // checkBox3
             // 
@@ -637,7 +637,7 @@ namespace lab4
             this.checkBox3.Size = new System.Drawing.Size(18, 17);
             this.checkBox3.TabIndex = 44;
             this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.Click += new System.EventHandler(this.checkBox1_Click);
+            this.checkBox3.Click += new System.EventHandler(this.CheckBox1_Click);
             // 
             // checkBox2
             // 
@@ -647,7 +647,7 @@ namespace lab4
             this.checkBox2.Size = new System.Drawing.Size(18, 17);
             this.checkBox2.TabIndex = 43;
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.Click += new System.EventHandler(this.checkBox1_Click);
+            this.checkBox2.Click += new System.EventHandler(this.CheckBox1_Click);
             // 
             // cancelBtn
             // 
@@ -753,7 +753,7 @@ namespace lab4
             this.greenBackBtn.Size = new System.Drawing.Size(30, 29);
             this.greenBackBtn.TabIndex = 21;
             this.greenBackBtn.UseVisualStyleBackColor = false;
-            this.greenBackBtn.Click += new System.EventHandler(this.greenBackBtn_Click);
+            this.greenBackBtn.Click += new System.EventHandler(this.GreenBackBtn_Click);
             // 
             // purpleBackBtn
             // 
@@ -763,7 +763,7 @@ namespace lab4
             this.purpleBackBtn.Size = new System.Drawing.Size(30, 29);
             this.purpleBackBtn.TabIndex = 20;
             this.purpleBackBtn.UseVisualStyleBackColor = false;
-            this.purpleBackBtn.Click += new System.EventHandler(this.purpleBackBtn_Click);
+            this.purpleBackBtn.Click += new System.EventHandler(this.PurpleBackBtn_Click);
             // 
             // redBackBtn
             // 
@@ -773,7 +773,7 @@ namespace lab4
             this.redBackBtn.Size = new System.Drawing.Size(30, 29);
             this.redBackBtn.TabIndex = 19;
             this.redBackBtn.UseVisualStyleBackColor = false;
-            this.redBackBtn.Click += new System.EventHandler(this.redBackBtn_Click);
+            this.redBackBtn.Click += new System.EventHandler(this.RedBackBtn_Click);
             // 
             // orangeBackBtn
             // 
@@ -783,7 +783,7 @@ namespace lab4
             this.orangeBackBtn.Size = new System.Drawing.Size(30, 29);
             this.orangeBackBtn.TabIndex = 18;
             this.orangeBackBtn.UseVisualStyleBackColor = false;
-            this.orangeBackBtn.Click += new System.EventHandler(this.orangeBackBtn_Click);
+            this.orangeBackBtn.Click += new System.EventHandler(this.OrangeBackBtn_Click);
             // 
             // yellowBackBtn
             // 
@@ -793,7 +793,7 @@ namespace lab4
             this.yellowBackBtn.Size = new System.Drawing.Size(30, 29);
             this.yellowBackBtn.TabIndex = 17;
             this.yellowBackBtn.UseVisualStyleBackColor = false;
-            this.yellowBackBtn.Click += new System.EventHandler(this.yellowBackBtn_Click);
+            this.yellowBackBtn.Click += new System.EventHandler(this.YellowBackBtn_Click);
             // 
             // whiteBackColor
             // 
@@ -802,7 +802,7 @@ namespace lab4
             this.whiteBackColor.Size = new System.Drawing.Size(30, 29);
             this.whiteBackColor.TabIndex = 16;
             this.whiteBackColor.UseVisualStyleBackColor = true;
-            this.whiteBackColor.Click += new System.EventHandler(this.whiteBackColor_Click);
+            this.whiteBackColor.Click += new System.EventHandler(this.WhiteBackColor_Click);
             // 
             // greenLineBtn
             // 
@@ -812,7 +812,7 @@ namespace lab4
             this.greenLineBtn.Size = new System.Drawing.Size(30, 29);
             this.greenLineBtn.TabIndex = 15;
             this.greenLineBtn.UseVisualStyleBackColor = false;
-            this.greenLineBtn.Click += new System.EventHandler(this.greenLineBtn_Click);
+            this.greenLineBtn.Click += new System.EventHandler(this.GreenLineBtn_Click);
             // 
             // purpleLineBtn
             // 
@@ -822,7 +822,7 @@ namespace lab4
             this.purpleLineBtn.Size = new System.Drawing.Size(30, 29);
             this.purpleLineBtn.TabIndex = 14;
             this.purpleLineBtn.UseVisualStyleBackColor = false;
-            this.purpleLineBtn.Click += new System.EventHandler(this.purpleLineBtn_Click);
+            this.purpleLineBtn.Click += new System.EventHandler(this.PurpleLineBtn_Click);
             // 
             // redLineBtn
             // 
@@ -832,7 +832,7 @@ namespace lab4
             this.redLineBtn.Size = new System.Drawing.Size(30, 29);
             this.redLineBtn.TabIndex = 13;
             this.redLineBtn.UseVisualStyleBackColor = false;
-            this.redLineBtn.Click += new System.EventHandler(this.redLineBtn_Click);
+            this.redLineBtn.Click += new System.EventHandler(this.RedLineBtn_Click);
             // 
             // orangeLineBtn
             // 
@@ -842,7 +842,7 @@ namespace lab4
             this.orangeLineBtn.Size = new System.Drawing.Size(30, 29);
             this.orangeLineBtn.TabIndex = 12;
             this.orangeLineBtn.UseVisualStyleBackColor = false;
-            this.orangeLineBtn.Click += new System.EventHandler(this.orangeLineBtn_Click);
+            this.orangeLineBtn.Click += new System.EventHandler(this.OrangeLineBtn_Click);
             // 
             // yellowLineBtn
             // 
@@ -852,7 +852,7 @@ namespace lab4
             this.yellowLineBtn.Size = new System.Drawing.Size(30, 29);
             this.yellowLineBtn.TabIndex = 11;
             this.yellowLineBtn.UseVisualStyleBackColor = false;
-            this.yellowLineBtn.Click += new System.EventHandler(this.yellowLineBtn_Click);
+            this.yellowLineBtn.Click += new System.EventHandler(this.YellowLineBtn_Click);
             // 
             // whiteLineBtn
             // 
@@ -861,7 +861,7 @@ namespace lab4
             this.whiteLineBtn.Size = new System.Drawing.Size(30, 29);
             this.whiteLineBtn.TabIndex = 1;
             this.whiteLineBtn.UseVisualStyleBackColor = true;
-            this.whiteLineBtn.Click += new System.EventHandler(this.whiteLineBtn_Click);
+            this.whiteLineBtn.Click += new System.EventHandler(this.WhiteLineBtn_Click);
             // 
             // label2
             // 
@@ -910,7 +910,7 @@ namespace lab4
             this.libBtn.TabIndex = 6;
             this.libBtn.Text = "Библиотечная фукнция";
             this.libBtn.UseVisualStyleBackColor = false;
-            this.libBtn.Click += new System.EventHandler(this.libBtn_Click);
+            this.libBtn.Click += new System.EventHandler(this.LibBtn_Click);
             // 
             // brezenhemBtn
             // 
@@ -1018,7 +1018,7 @@ namespace lab4
             this.pictureBox1.Size = new System.Drawing.Size(999, 838);
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox1_Paint);
             // 
             // checkBox1
             // 
@@ -1028,7 +1028,7 @@ namespace lab4
             this.checkBox1.Size = new System.Drawing.Size(18, 17);
             this.checkBox1.TabIndex = 42;
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Click += new System.EventHandler(this.checkBox1_Click);
+            this.checkBox1.Click += new System.EventHandler(this.CheckBox1_Click);
             // 
             // MainForm
             // 
