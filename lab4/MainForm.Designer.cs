@@ -130,6 +130,8 @@ namespace lab4
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cancelBtn);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.figureNumber);
             this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.groupBox3);
@@ -139,12 +141,10 @@ namespace lab4
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.checkBox5);
             this.panel1.Controls.Add(this.checkBox4);
             this.panel1.Controls.Add(this.checkBox3);
             this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.cancelBtn);
             this.panel1.Controls.Add(this.drawLbl);
             this.panel1.Controls.Add(this.yCenter);
             this.panel1.Controls.Add(this.xCenter);
@@ -206,7 +206,7 @@ namespace lab4
             this.groupBox4.Size = new System.Drawing.Size(131, 138);
             this.groupBox4.TabIndex = 53;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Эллипс";
+            this.groupBox4.Text = "Эллипсы";
             // 
             // label13
             // 
@@ -239,7 +239,7 @@ namespace lab4
             0,
             0,
             0});
-            this.ellipseHeightStart.Location = new System.Drawing.Point(27, 62);
+            this.ellipseHeightStart.Location = new System.Drawing.Point(27, 63);
             this.ellipseHeightStart.Maximum = new decimal(new int[] {
             999,
             0,
@@ -256,7 +256,7 @@ namespace lab4
             0,
             0,
             0});
-            this.ellipseWidthStart.Location = new System.Drawing.Point(27, 37);
+            this.ellipseWidthStart.Location = new System.Drawing.Point(27, 38);
             this.ellipseWidthStart.Maximum = new decimal(new int[] {
             999,
             0,
@@ -273,7 +273,7 @@ namespace lab4
             0,
             0,
             0});
-            this.ellipseWidthEnd.Location = new System.Drawing.Point(82, 37);
+            this.ellipseWidthEnd.Location = new System.Drawing.Point(82, 38);
             this.ellipseWidthEnd.Maximum = new decimal(new int[] {
             999,
             0,
@@ -290,7 +290,7 @@ namespace lab4
             0,
             0,
             0});
-            this.ellipseHeightEnd.Location = new System.Drawing.Point(82, 62);
+            this.ellipseHeightEnd.Location = new System.Drawing.Point(82, 63);
             this.ellipseHeightEnd.Maximum = new decimal(new int[] {
             999,
             0,
@@ -304,19 +304,20 @@ namespace lab4
             // 
             this.button4.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(-1, 89);
+            this.button4.Location = new System.Drawing.Point(4, 89);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(126, 26);
             this.button4.TabIndex = 30;
             this.button4.Text = "Отрисовка конц.";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.DrawSetOfEllipses_Click);
             // 
             // label7
             // 
             this.label7.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(-18, 63);
+            this.label7.Location = new System.Drawing.Point(-18, 64);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 24);
             this.label7.TabIndex = 52;
@@ -328,7 +329,7 @@ namespace lab4
             this.label8.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(-18, 37);
+            this.label8.Location = new System.Drawing.Point(-18, 38);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 24);
             this.label8.TabIndex = 50;
@@ -348,7 +349,7 @@ namespace lab4
             this.groupBox3.Size = new System.Drawing.Size(125, 138);
             this.groupBox3.TabIndex = 51;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Окружность";
+            this.groupBox3.Text = "Окружности";
             // 
             // button3
             // 
@@ -360,6 +361,7 @@ namespace lab4
             this.button3.TabIndex = 30;
             this.button3.Text = "Отрисовка конц.";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.DrawSetOfCircles_Click);
             // 
             // circleRadiusStart
             // 
@@ -368,7 +370,7 @@ namespace lab4
             0,
             0,
             0});
-            this.circleRadiusStart.Location = new System.Drawing.Point(34, 37);
+            this.circleRadiusStart.Location = new System.Drawing.Point(34, 38);
             this.circleRadiusStart.Maximum = new decimal(new int[] {
             999,
             0,
@@ -385,7 +387,7 @@ namespace lab4
             0,
             0,
             0});
-            this.circleRadiusEnd.Location = new System.Drawing.Point(34, 62);
+            this.circleRadiusEnd.Location = new System.Drawing.Point(34, 63);
             this.circleRadiusEnd.Maximum = new decimal(new int[] {
             999,
             0,
@@ -400,7 +402,7 @@ namespace lab4
             this.label9.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(-15, 63);
+            this.label9.Location = new System.Drawing.Point(-15, 64);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(63, 24);
             this.label9.TabIndex = 52;
@@ -412,7 +414,7 @@ namespace lab4
             this.label12.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(-15, 37);
+            this.label12.Location = new System.Drawing.Point(-15, 38);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(63, 24);
             this.label12.TabIndex = 50;
@@ -501,7 +503,7 @@ namespace lab4
             this.label11.Text = "Ry";
             this.label11.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // ellipseWidht
+            // ellipseWidth
             // 
             this.ellipseWidth.Increment = new decimal(new int[] {
             10,
@@ -514,7 +516,7 @@ namespace lab4
             0,
             0,
             0});
-            this.ellipseWidth.Name = "ellipseWidht";
+            this.ellipseWidth.Name = "ellipseWidth";
             this.ellipseWidth.Size = new System.Drawing.Size(65, 22);
             this.ellipseWidth.TabIndex = 49;
             // 
@@ -975,7 +977,7 @@ namespace lab4
             this.exit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(273, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(273, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
