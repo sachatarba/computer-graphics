@@ -364,5 +364,13 @@ namespace lab4
             drawCircleFunc = Painter.DrawCircleParametric;
             drawEllipseFunc = Painter.DrawEllipseParametric;
         }
+
+        private void midpointBtn_Click(object sender, EventArgs e)
+        {
+            SetUnChecked();
+            checkBox3.Checked = true;
+            drawCircleFunc = Painter.DrawCircleMidpoint;
+            drawEllipseFunc = Painter.DrawEllipseMidpoint;
+        }
     }
 }

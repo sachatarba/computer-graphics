@@ -934,6 +934,7 @@ namespace lab4
             this.midpointBtn.TabIndex = 4;
             this.midpointBtn.Text = "Алгоритм средней точки";
             this.midpointBtn.UseVisualStyleBackColor = false;
+            this.midpointBtn.Click += new System.EventHandler(this.midpointBtn_Click);
             // 
             // parametricBtn
             // 
