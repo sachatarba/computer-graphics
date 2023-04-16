@@ -956,6 +956,7 @@ namespace lab4
             this.canonicalBtn.TabIndex = 2;
             this.canonicalBtn.Text = "Каноническое уравнение";
             this.canonicalBtn.UseVisualStyleBackColor = false;
+            this.canonicalBtn.Click += new System.EventHandler(this.canonicalBtn_Click);
             // 
             // label1
             // 

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Brezenhem.cs" />
+    <Compile Include="Canonical.cs" />
     <Compile Include="ColoredCircle.cs" />
     <Compile Include="ColoredEllipse.cs" />
     <Compile Include="IDrawable.cs" />

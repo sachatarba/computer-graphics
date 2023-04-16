@@ -348,5 +348,13 @@ namespace lab4
             drawCircleFunc = Painter.DrawCircleBrezenhem;
             drawEllipseFunc = Painter.DrawEllipseBrezenhem;
         }
+
+        private void canonicalBtn_Click(object sender, EventArgs e)
+        {
+            SetUnChecked();
+            checkBox1.Checked = true;
+            drawCircleFunc = Painter.DrawCircleCanonical;
+            drawEllipseFunc = Painter.DrawEllipseCanonical;
+        }
     }
 }
