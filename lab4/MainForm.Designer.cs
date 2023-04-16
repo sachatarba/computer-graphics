@@ -945,6 +945,7 @@ namespace lab4
             this.parametricBtn.TabIndex = 3;
             this.parametricBtn.Text = "Параметрическое уравнение";
             this.parametricBtn.UseVisualStyleBackColor = false;
+            this.parametricBtn.Click += new System.EventHandler(this.ParametricBtn_Click);
             // 
             // canonicalBtn
             // 

@@ -356,5 +356,13 @@ namespace lab4
             drawCircleFunc = Painter.DrawCircleCanonical;
             drawEllipseFunc = Painter.DrawEllipseCanonical;
         }
+
+        private void ParametricBtn_Click(object sender, EventArgs e)
+        {
+            SetUnChecked();
+            checkBox2.Checked = true;
+            drawCircleFunc = Painter.DrawCircleParametric;
+            drawEllipseFunc = Painter.DrawEllipseParametric;
+        }
     }
 }

@@ -62,6 +62,28 @@ namespace lab4
             }
         }
 
+        public static void DrawCircleParametric(Graphics g, PointF center, int width, int heigth, Color color)
+        {
+            Pen pen = new Pen(color);
+            List<Point> points = Parametric.GetPointsForCircle(new Point(Convert.ToInt32(center.X), Convert.ToInt32(center.Y)), width);
+
+            foreach (Point point in points)
+            {
+                g.DrawEllipse(pen, point.X, point.Y, 1, 1);
+            }
+        }
+
+        public static void DrawEllipseParametric(Graphics g, PointF center, int width, int heigth, Color color)
+        {
+            Pen pen = new Pen(color);
+            List<Point> points = Parametric.GetPointsForEllipse(new Point(Convert.ToInt32(center.X), Convert.ToInt32(center.Y)), heigth, width);
+
+            foreach (Point point in points)
+            {
+                g.DrawEllipse(pen, point.X, point.Y, 1, 1);
+            }
+        }
+
         public static void DrawScene(Graphics g, List<IDrawable> drawablesObjects)
         {
             foreach (var drawable in drawablesObjects)
