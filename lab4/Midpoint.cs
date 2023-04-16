@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace lab4
 {
@@ -50,8 +51,15 @@ namespace lab4
 
             int x = 0;
             int y = heigth;
-            
-            int delta = sqrHeigth - Convert.ToInt32(sqrWidth * (heigth - 1f / 4));
+            float delta = 0;
+            //try
+            //{
+                delta = sqrHeigth - sqrWidth * (heigth - 1f / 4);
+            //}
+            //catch (Exception e)
+            //{
+                //MessageBox.Show(e.Message + $"{sqrWidth * (heigth - 1f / 4)} {sqrWidth}");
+            //}
             int endWidth = Convert.ToInt32(width / Math.Sqrt(1 + Convert.ToSingle(sqrHeigth) / sqrWidth));
 
             points.AddRange(Painter.ReflectPointsOfEllipse(new Point(x + center.X, y + center.Y), center));
@@ -75,7 +83,14 @@ namespace lab4
             x = width;
             y = 0;
 
-            delta = sqrWidth - Convert.ToInt32(sqrHeigth * (width - 1f / 4));
+            //try
+            //{
+                delta = sqrWidth - sqrHeigth * (width - 1f / 4);
+            //}
+            //catch (Exception e)
+            //{
+
+            //}
             int endHeight = Convert.ToInt32(heigth / Math.Sqrt(1 + Convert.ToSingle(sqrWidth) / sqrHeigth));
 
             points.AddRange(Painter.ReflectPointsOfEllipse(new Point(x + center.X, y + center.Y), center));

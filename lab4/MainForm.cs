@@ -324,7 +324,7 @@ namespace lab4
             }
             else if (endWidth != 0 && endHeight != 0)
             {
-                if (endWidth <= startWidth || endHeight <= endWidth)
+                if (endWidth <= startWidth || endHeight <= startHeight)
                 {
                     MessageBox.Show("Конечные ширина и высота должны быть больше начальных", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -371,6 +371,12 @@ namespace lab4
             checkBox3.Checked = true;
             drawCircleFunc = Painter.DrawCircleMidpoint;
             drawEllipseFunc = Painter.DrawEllipseMidpoint;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Plot plot = new Plot();
+            plot.ShowDialog();
         }
     }
 }
