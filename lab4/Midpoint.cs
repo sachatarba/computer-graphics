@@ -51,31 +51,20 @@ namespace lab4
 
             int x = 0;
             int y = heigth;
-            float delta = 0;
-            //try
-            //{
-                delta = sqrHeigth - sqrWidth * (heigth - 1f / 4);
-            //}
-            //catch (Exception e)
-            //{
-                //MessageBox.Show(e.Message + $"{sqrWidth * (heigth - 1f / 4)} {sqrWidth}");
-            //}
+            float delta = sqrHeigth - sqrWidth * (heigth - 1f / 4);
             int endWidth = Convert.ToInt32(width / Math.Sqrt(1 + Convert.ToSingle(sqrHeigth) / sqrWidth));
 
             points.AddRange(Painter.ReflectPointsOfEllipse(new Point(x + center.X, y + center.Y), center));
             while (x <= endWidth)
             {
-                if (delta < 0)
+                if (delta > 0)
                 {
-                    ++x;
-                    delta += 2 * sqrHeigth * x + 1;
-                }
-                else
-                {
-                    ++x;
                     --y;
-                    delta = 2 * sqrHeigth * x - 2 * sqrWidth * y + 1;
+                    delta -= 2 * sqrWidth * y;
                 }
+
+                ++x;
+                delta += sqrHeigth * (2 * x + 1);
 
                 points.AddRange(Painter.ReflectPointsOfEllipse(new Point(x + center.X, y + center.Y), center));
             }
@@ -83,30 +72,20 @@ namespace lab4
             x = width;
             y = 0;
 
-            //try
-            //{
-                delta = sqrWidth - sqrHeigth * (width - 1f / 4);
-            //}
-            //catch (Exception e)
-            //{
-
-            //}
+            delta = sqrWidth - sqrHeigth * (width - 1f / 4);
             int endHeight = Convert.ToInt32(heigth / Math.Sqrt(1 + Convert.ToSingle(sqrWidth) / sqrHeigth));
 
             points.AddRange(Painter.ReflectPointsOfEllipse(new Point(x + center.X, y + center.Y), center));
             while (y <= endHeight)
             {
-                if (delta < 0)
-                {
-                    ++y;
-                    delta += 2 * sqrWidth * y + 1;
-                }
-                else
+                if (delta > 0)
                 {
                     --x;
-                    ++y;
-                    delta = 2 * sqrWidth * y - 2 * sqrHeigth * x + 1;
+                    delta -= 2 * sqrHeigth * x;
                 }
+
+                ++y;
+                delta += sqrWidth * (2 * y + 1);
 
                 points.AddRange(Painter.ReflectPointsOfEllipse(new Point(x + center.X, y + center.Y), center));
             }

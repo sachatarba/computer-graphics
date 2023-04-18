@@ -121,7 +121,7 @@ namespace lab4
             PointPairList f4_list = new PointPairList();
             Point center = new Point(0, 0);
 
-            for (int radius = 1000; radius < 6000; radius += 1000)
+            for (int radius = 1000; radius < 5000; radius += 1000)
             {
                 // добавим в список точку
                 Stopwatch stopWatch = new Stopwatch();
