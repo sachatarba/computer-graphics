@@ -127,10 +127,15 @@ namespace lab5
 
         private void PaintBtn_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
-            pictureBox1.DrawToBitmap(bitmap, pictureBox1.ClientRectangle);
+            //Bitmap bitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
+
             //Painter.DrawLines(e.Graphics, points, Color.Black);
-            Painter.FillFigure(bitmap, points, paintColor);   
+            translate.X = pictureBox1.Width / 2f;
+            translate.Y = pictureBox1.Height / 2f;
+            //g.Clear(Color.White);
+            Graphics g = pictureBox1.CreateGraphics();
+            g.TranslateTransform(translate.X, translate.Y);
+            Painter.FillFigure(g, points, paintColor);   
         }
     }
 }
