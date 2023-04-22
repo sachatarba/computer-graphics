@@ -16,6 +16,7 @@ namespace lab5
         {
             InitializeComponent();
             paintColor = new Color();
+            points = new List<Point>();
             paintColor = Color.Green;
         }
 
@@ -27,6 +28,7 @@ namespace lab5
             }
 
             currentColorBtn.BackColor = colorDialog1.Color;
+            //throw new Exception();
         }
     }
 }
