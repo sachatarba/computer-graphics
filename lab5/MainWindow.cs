@@ -22,7 +22,7 @@ namespace lab5
             points = new List<Point>();
             figures = new List<List<Point>>();
             paintColor = Color.Green;
-            translate = new Vector<float>(pictureBox1.Width / 2f, pictureBox1.Height / 2f); 
+            translate = new Vector<float>(pictureBox1.Width / 2f, pictureBox1.Height / 2f);
         }
 
         private void ChooseColorBtn_Click(object sender, EventArgs e)
@@ -48,7 +48,17 @@ namespace lab5
 
         private void PictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            points.Add(new Point(e.X - Convert.ToInt32(translate.X), e.Y - Convert.ToInt32(translate.Y)));
+            Point point = new Point(e.X - Convert.ToInt32(translate.X), e.Y - Convert.ToInt32(translate.Y));
+            if (!points.Contains(point))
+            {
+                points.Add(point);
+            }
+            else
+            {
+                MessageBox.Show("Точка уже была добавлена!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            //points.Add();
             pictureBox1.Refresh();
 
             AddEdgeToListView();
@@ -128,8 +138,16 @@ namespace lab5
         {
             int x = Convert.ToInt32(xInput.Value);
             int y = Convert.ToInt32(yInput.Value);
-
-            points.Add(new Point(x, -y));
+            Point point = new Point(x, -y);
+            if (!points.Contains(point))
+            {
+                points.Add(point);
+            }
+            else
+            {
+                MessageBox.Show("Точка уже была добавлена!","Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             AddEdgeToListView();
             wasFilled = false;
@@ -153,6 +171,11 @@ namespace lab5
 
         private void ClearBtn_Click(object sender, EventArgs e)
         {
+            if (paintThread != null && paintThread.IsAlive)
+            {
+                paintThread.Abort();
+            }
+
             points.Clear();
             figures.Clear();
             listPoints.Items.Clear();
@@ -175,6 +198,12 @@ namespace lab5
                 MessageBox.Show("Фигура не была замкнута!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            if (paintThread != null && paintThread.IsAlive)
+            {
+                paintThread.Abort();
+            }
+
             if (!timeLocking)
             {
                 wasFilled = true;
@@ -184,8 +213,10 @@ namespace lab5
             {
                 Graphics g = pictureBox1.CreateGraphics();
                 g.TranslateTransform(translate.X, translate.Y);
-                Thread fillFIgure = new Thread(FillFigure);
-                fillFIgure.Start(g);
+                //Thread fillFIgure = new Thread(FillFigure);
+                paintThread = new Thread(FillFigure);
+                paintThread.Name = "Paint";
+                paintThread.Start(g);
             }
             //Bitmap bitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
 

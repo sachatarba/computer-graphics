@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Drawing;
+using System.Threading;
 
 namespace lab5
 {
@@ -424,6 +425,7 @@ namespace lab5
         private Vector<float> translate;
         private bool wasFilled;
         private bool timeLocking;
+        private Thread paintThread;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.NumericUpDown yInput;
         private System.Windows.Forms.NumericUpDown xInput;
