@@ -39,30 +39,10 @@ namespace lab5
 
                 foreach (Segment edge in edges)
                 {
-                    //if (scanningRow.Intersetcion(edge))
                     if (scanningRow.Start.Y <= edge.End.Y && scanningRow.Start.Y >= edge.Start.Y)
                     {
                         Point intersection = scanningRow.PointOfIntersection(edge, y);
-                        //if (!pointsOfIntersection.Contains(intersection) && !points.Contains(intersection))
-                            pointsOfIntersection.Add(intersection);
-                        
-                    }
-                    //else
-                    //{
-                    //    MessageBox.Show($"{edge.Start.X} {edge.Start.Y} {edge.End.X} {edge.End.Y};" +
-                    //        $"{scaningRow.Start.Y}");
-                    //}
-                    try
-                    {
-                        //if (pointsOfIntersection[pointsOfIntersection.Count - 1].Y != y)
-                        //{
-                        //    MessageBox.Show("eefafe");
-                        //}
-
-                    }
-                    catch
-                    {
-
+                        pointsOfIntersection.Add(intersection);
                     }
                 }
             }
@@ -73,13 +53,11 @@ namespace lab5
             StreamWriter file = new StreamWriter("C:\\Users\\Lenevo Legion 5\\source\\repos\\sachatarba\\computer-graphics\\lab5\\log.txt");
             foreach (Point point in sortedPoints)
             {
-                //MessageBox.Show($"{ point.X} {point.Y}");
                 file.WriteLine($"{point.X} {point.Y}");
             }
             file.Close();
-            int currentIntersection = 0;
-            Pen backPen = new Pen(Color.White); 
 
+            //Pen backPen = new Pen(Color.White); 
             for (int y = topBorder - 2; y > bottomBorder; --y)
             {
                 //currentIntersection = 0;
@@ -88,17 +66,11 @@ namespace lab5
 
                 if (points.Count(p => p.Y == y) == 0)
                 {
-
-
                     for (int x = leftBorder; x <= rightBorder; ++x)
                     {
                         Point curPoint = new Point(x, y);
                         if (sortedPoints.Contains(curPoint) && sortedPoints.Count(p => p == curPoint) % 2 != 0)
                         {
-                            //if (is_inside)
-                            //{
-
-                            //}
                             is_inside = !is_inside;
                         }
                         else if (points.Contains(curPoint))
@@ -110,10 +82,10 @@ namespace lab5
                         {
                             g.DrawRectangle(pen, x, y, 1, 1);
                         }
-                        else
-                        {
-                            g.DrawRectangle(backPen, x, y, 1, 1);
-                        }
+                        //else
+                        //{
+                        //    g.DrawRectangle(backPen, x, y, 1, 1);
+                        //}
                     }
                 }
             }
