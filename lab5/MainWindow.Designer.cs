@@ -55,6 +55,7 @@ namespace lab5
             this.currentColorBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -170,6 +171,7 @@ namespace lab5
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "С задержкой";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -183,6 +185,7 @@ namespace lab5
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Без задержки";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
             // groupBox2
             // 
@@ -369,11 +372,23 @@ namespace lab5
             this.label1.TabIndex = 0;
             this.label1.Text = "Текущий цвет:";
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(1206, 675);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(149, 20);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Время закраски:";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1438, 697);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "MainWindow";
@@ -391,6 +406,7 @@ namespace lab5
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
         #endregion
@@ -407,6 +423,7 @@ namespace lab5
         private List<List<Point>> figures;
         private Vector<float> translate;
         private bool wasFilled;
+        private bool timeLocking;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.NumericUpDown yInput;
         private System.Windows.Forms.NumericUpDown xInput;
@@ -422,6 +439,7 @@ namespace lab5
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.Button paintBtn;
+        private System.Windows.Forms.Label label5;
     }
 }
 

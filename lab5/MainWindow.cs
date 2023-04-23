@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace lab5
             InitializeComponent();
             paintColor = new Color();
             points = new List<Point>();
+            figures = new List<List<Point>>();
             paintColor = Color.Green;
             translate = new Vector<float>(pictureBox1.Width / 2f, pictureBox1.Height / 2f); 
         }
@@ -97,8 +99,20 @@ namespace lab5
                 //Thread fillingThread = new Thread(() => Painter.FillFigure(e.Graphics, points, paintColor));
                 //Thread fillingThread = new Thread(FillFigure);
                 //fillingThread.Start(e.Graphics);
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
                 FillFigure(e.Graphics);
+                sw.Stop();
+                TimeSpan timeSpan = sw.Elapsed;
+                label5.Text = string.Format("Время закраски: {0:f3}с", timeSpan.TotalSeconds);
             }
+
+            foreach (List<Point> points in figures)
+            {
+                Painter.DrawLines(e.Graphics, points, Color.Black);
+                Painter.DrawPoints(e.Graphics, points, Color.Black);
+            }
+
             Painter.DrawLines(e.Graphics, points, Color.Black);
             Painter.DrawPoints(e.Graphics, points, Color.Black);
 
@@ -118,6 +132,7 @@ namespace lab5
             points.Add(new Point(x, -y));
 
             AddEdgeToListView();
+            wasFilled = false;
             pictureBox1.Refresh();
         }
 
@@ -130,6 +145,8 @@ namespace lab5
             }
 
             points.Add(points.ElementAt(0));
+            figures.Add(new List<Point>(points));
+            points.Clear();
             AddEdgeToListView();
             pictureBox1.Refresh();
         }
@@ -137,6 +154,7 @@ namespace lab5
         private void ClearBtn_Click(object sender, EventArgs e)
         {
             points.Clear();
+            figures.Clear();
             listPoints.Items.Clear();
             wasFilled = false;
             pictureBox1.Refresh(); 
@@ -146,13 +164,29 @@ namespace lab5
         {
             //Graphics g = pictureBox1.CreateGraphics();
             //g.TranslateTransform(translate.X, translate.Y);
-            Painter.FillFigure(g, points, paintColor);
+            
+            Painter.FillFigure(g, figures, paintColor);
         }
 
         private void PaintBtn_Click(object sender, EventArgs e)
         {
-            wasFilled = true;
-            pictureBox1.Refresh();
+            if (figures.Count == 0)
+            {
+                MessageBox.Show("Фигура не была замкнута!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!timeLocking)
+            {
+                wasFilled = true;
+                pictureBox1.Refresh();
+            }
+            else
+            {
+                Graphics g = pictureBox1.CreateGraphics();
+                g.TranslateTransform(translate.X, translate.Y);
+                Thread fillFIgure = new Thread(FillFigure);
+                fillFIgure.Start(g);
+            }
             //Bitmap bitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
 
             //Painter.DrawLines(e.Graphics, points, Color.Black);
@@ -161,10 +195,16 @@ namespace lab5
             //g.Clear(Color.White);
 
 
-            //Graphics g = pictureBox1.CreateGraphics();
-            //g.TranslateTransform(translate.X, translate.Y);   
-            //Thread fillFIgure = new Thread(FillFigure);
-            //fillFIgure.Start();
+        }
+
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            timeLocking = false;
+        }
+
+        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            timeLocking = true;
         }
     }
 }

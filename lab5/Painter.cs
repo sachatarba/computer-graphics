@@ -32,15 +32,33 @@ namespace lab5
             }
         }
 
-        public static void FillFigure(Graphics g, List<Point> points, Color color)
+        public static void FillFigure(Graphics g, List<List<Point>> figures, Color color)
         {
-            int leftBorder = points.Min(p => p.X);
-            int rightBorder = points.Max(p => p.X);
-            int topBorder = points.Max(p => p.Y);
-            int bottomBorder = points.Min(p => p.Y);
+            int leftBorder = figures[0].Min(p => p.X);
+            int rightBorder = figures[0].Max(p => p.X);
+            int topBorder = figures[0].Max(p => p.Y);
+            int bottomBorder = figures[0].Min(p => p.Y);
 
-            List<Segment> edges = PointsProcessor.GetSegments(points);
+            foreach (List<Point> figure in figures) {
+                leftBorder = Math.Min(leftBorder, figure.Min(p => p.X));
+                rightBorder = Math.Max(rightBorder, figure.Max(p => p.X));
+                topBorder = Math.Max(topBorder, figure.Max(p => p.Y));
+                bottomBorder = Math.Min(bottomBorder, figure.Min(p => p.Y));
+            }
+
+            List<Segment> edges = new List<Segment>();
+            foreach (List<Point> figure in figures)
+            {
+                edges.AddRange(PointsProcessor.GetSegments(figure));
+            }
             List<Point> pointsOfIntersection = new List<Point>();
+
+            List<Point> points = new List<Point>();
+
+            foreach (List<Point> figure in figures)
+            {
+                points.AddRange(new List<Point>(figure));
+            }
 
             int temp = topBorder;
             for (int y = topBorder - 2; y > bottomBorder; --y)
@@ -51,8 +69,15 @@ namespace lab5
                 {
                     if (scanningRow.Start.Y <= edge.End.Y && scanningRow.Start.Y >= edge.Start.Y)
                     {
-                        Point intersection = scanningRow.PointOfIntersection(edge, y);
-                        pointsOfIntersection.Add(intersection);
+                        try
+                        {
+                            Point intersection = scanningRow.PointOfIntersection(edge, y);
+                            pointsOfIntersection.Add(intersection);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
                     }
                 }
             }
