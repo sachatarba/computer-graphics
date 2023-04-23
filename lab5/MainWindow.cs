@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -125,6 +126,13 @@ namespace lab5
             pictureBox1.Refresh(); 
         }
 
+        void FillFigure()
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            g.TranslateTransform(translate.X, translate.Y);
+            Painter.FillFigure(g, points, paintColor);
+        }
+
         private void PaintBtn_Click(object sender, EventArgs e)
         {
             //Bitmap bitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
@@ -134,8 +142,9 @@ namespace lab5
             translate.Y = pictureBox1.Height / 2f;
             //g.Clear(Color.White);
             Graphics g = pictureBox1.CreateGraphics();
-            g.TranslateTransform(translate.X, translate.Y);
-            Painter.FillFigure(g, points, paintColor);   
+            g.TranslateTransform(translate.X, translate.Y);   
+            Thread fillFIgure = new Thread(FillFigure);
+            fillFIgure.Start();
         }
     }
 }

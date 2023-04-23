@@ -14,8 +14,16 @@ namespace lab5
 
         public Segment(Point p1, Point p2) : base(p1, p2)
         {
-            Start = p1;
-            End = p2;
+            if (p1.Y < p2.Y)
+            {
+                Start = p1;
+                End = p2;
+            }
+            else
+            {
+                Start = p2;
+                End = p1;
+            }
         }
 
 

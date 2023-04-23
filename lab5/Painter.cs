@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -38,17 +39,25 @@ namespace lab5
 
                 foreach (Segment edge in edges)
                 {
-                    if (scanningRow.Intersetcion(edge))
+                    //if (scanningRow.Intersetcion(edge))
+                    if (scanningRow.Start.Y <= edge.End.Y && scanningRow.Start.Y >= edge.Start.Y)
                     {
-                        pointsOfIntersection.Add(scanningRow.PointOfIntersection(edge, y));
+                        Point intersection = scanningRow.PointOfIntersection(edge, y);
+                        //if (!pointsOfIntersection.Contains(intersection) && !points.Contains(intersection))
+                            pointsOfIntersection.Add(intersection);
                         
                     }
+                    //else
+                    //{
+                    //    MessageBox.Show($"{edge.Start.X} {edge.Start.Y} {edge.End.X} {edge.End.Y};" +
+                    //        $"{scaningRow.Start.Y}");
+                    //}
                     try
                     {
-                        if (pointsOfIntersection[pointsOfIntersection.Count - 1].Y != y)
-                        {
-                            MessageBox.Show("eefafe");
-                        }
+                        //if (pointsOfIntersection[pointsOfIntersection.Count - 1].Y != y)
+                        //{
+                        //    MessageBox.Show("eefafe");
+                        //}
 
                     }
                     catch
@@ -59,8 +68,17 @@ namespace lab5
             }
 
             Pen pen = new Pen(color);
-            List<Point> sortedPoints = pointsOfIntersection.OrderBy(point => point.X).ToList();
+            List<Point> sortedPoints = pointsOfIntersection.OrderBy(point => point.Y).ToList();
+
+            StreamWriter file = new StreamWriter("C:\\Users\\Lenevo Legion 5\\source\\repos\\sachatarba\\computer-graphics\\lab5\\log.txt");
+            foreach (Point point in sortedPoints)
+            {
+                //MessageBox.Show($"{ point.X} {point.Y}");
+                file.WriteLine($"{point.X} {point.Y}");
+            }
+            file.Close();
             int currentIntersection = 0;
+            Pen backPen = new Pen(Color.White); 
 
             for (int y = topBorder - 2; y > bottomBorder; --y)
             {
@@ -68,16 +86,34 @@ namespace lab5
                 Segment scanningRow = new Segment(new Point(leftBorder, y), new Point(rightBorder, y));
                 bool is_inside = false;
 
-                for (int x = leftBorder; x <= rightBorder; ++x) 
+                if (points.Count(p => p.Y == y) == 0)
                 {
-                    if (sortedPoints.Contains(new Point(x, y)))
-                    {
-                        is_inside = !is_inside;
-                    }
 
-                    if (is_inside)
+
+                    for (int x = leftBorder; x <= rightBorder; ++x)
                     {
-                        g.DrawRectangle(pen, x, y, 1, 1);
+                        Point curPoint = new Point(x, y);
+                        if (sortedPoints.Contains(curPoint) && sortedPoints.Count(p => p == curPoint) % 2 != 0)
+                        {
+                            //if (is_inside)
+                            //{
+
+                            //}
+                            is_inside = !is_inside;
+                        }
+                        else if (points.Contains(curPoint))
+                        {
+                            is_inside = !is_inside;
+                        }
+
+                        if (is_inside)
+                        {
+                            g.DrawRectangle(pen, x, y, 1, 1);
+                        }
+                        else
+                        {
+                            g.DrawRectangle(backPen, x, y, 1, 1);
+                        }
                     }
                 }
             }
