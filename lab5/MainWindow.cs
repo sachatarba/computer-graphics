@@ -30,7 +30,8 @@ namespace lab5
                 return;
             }
 
-            currentColorBtn.BackColor = colorDialog1.Color;
+            paintColor = colorDialog1.Color;
+            currentColorBtn.BackColor = paintColor;
             //throw new Exception();
         }
 
@@ -38,8 +39,8 @@ namespace lab5
         {
             if (points.Count >= 2)
             {
-                listPoints.Items.Add($"{listPoints.Items.Count + 1})" + "{ " + $"({points.ElementAt(points.Count - 2).X}; {points.ElementAt(points.Count - 2).Y}); " +
-                    $"({points.ElementAt(points.Count - 1).X}; {points.ElementAt(points.Count - 1).Y})" + " }");
+                listPoints.Items.Add($"{listPoints.Items.Count + 1})" + "{ " + $"({points.ElementAt(points.Count - 2).X}; {-points.ElementAt(points.Count - 2).Y}); " +
+                    $"({points.ElementAt(points.Count - 1).X}; {-points.ElementAt(points.Count - 1).Y})" + " }");
             }
         }
 
@@ -78,6 +79,11 @@ namespace lab5
             g.DrawLine(arrow, 0, -translate.Y, 0, translate.Y);
         }
 
+        public void FillFigure(object data)
+        {
+            FillFigure((Graphics)data);
+        }
+
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
             translate.X = pictureBox1.Width / 2f;
@@ -86,7 +92,16 @@ namespace lab5
             e.Graphics.Clear(Color.White);
             DrawGrid(e.Graphics);
             //Bitmap bitmap = pictureBox1.Image as Bitmap;
+            if (wasFilled)
+            {
+                //Thread fillingThread = new Thread(() => Painter.FillFigure(e.Graphics, points, paintColor));
+                //Thread fillingThread = new Thread(FillFigure);
+                //fillingThread.Start(e.Graphics);
+                FillFigure(e.Graphics);
+            }
             Painter.DrawLines(e.Graphics, points, Color.Black);
+            Painter.DrawPoints(e.Graphics, points, Color.Black);
+
             //Painter.FillFigure(bitmap, points, paintColor);
         }
 
@@ -100,7 +115,7 @@ namespace lab5
             int x = Convert.ToInt32(xInput.Value);
             int y = Convert.ToInt32(yInput.Value);
 
-            points.Add(new Point(x, y));
+            points.Add(new Point(x, -y));
 
             AddEdgeToListView();
             pictureBox1.Refresh();
@@ -123,28 +138,33 @@ namespace lab5
         {
             points.Clear();
             listPoints.Items.Clear();
+            wasFilled = false;
             pictureBox1.Refresh(); 
         }
 
-        void FillFigure()
+        void FillFigure(Graphics g)
         {
-            Graphics g = pictureBox1.CreateGraphics();
-            g.TranslateTransform(translate.X, translate.Y);
+            //Graphics g = pictureBox1.CreateGraphics();
+            //g.TranslateTransform(translate.X, translate.Y);
             Painter.FillFigure(g, points, paintColor);
         }
 
         private void PaintBtn_Click(object sender, EventArgs e)
         {
+            wasFilled = true;
+            pictureBox1.Refresh();
             //Bitmap bitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
 
             //Painter.DrawLines(e.Graphics, points, Color.Black);
-            translate.X = pictureBox1.Width / 2f;
-            translate.Y = pictureBox1.Height / 2f;
+            //translate.X = pictureBox1.Width / 2f;
+            //translate.Y = pictureBox1.Height / 2f;
             //g.Clear(Color.White);
-            Graphics g = pictureBox1.CreateGraphics();
-            g.TranslateTransform(translate.X, translate.Y);   
-            Thread fillFIgure = new Thread(FillFigure);
-            fillFIgure.Start();
+
+
+            //Graphics g = pictureBox1.CreateGraphics();
+            //g.TranslateTransform(translate.X, translate.Y);   
+            //Thread fillFIgure = new Thread(FillFigure);
+            //fillFIgure.Start();
         }
     }
 }

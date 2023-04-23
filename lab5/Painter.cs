@@ -22,6 +22,16 @@ namespace lab5
             }
         }
 
+        public static void DrawPoints(Graphics g, List<Point> points, Color color)
+        {
+            Pen pen = new Pen(color);
+
+            foreach (Point point in points)
+            {
+                g.DrawRectangle(pen, point.X, point.Y, 3, 3);
+            }
+        }
+
         public static void FillFigure(Graphics g, List<Point> points, Color color)
         {
             int leftBorder = points.Min(p => p.X);
@@ -80,6 +90,7 @@ namespace lab5
 
                         if (is_inside)
                         {
+                            //g.Clear(Color.Black);
                             g.DrawRectangle(pen, x, y, 1, 1);
                         }
                         //else

@@ -404,7 +404,9 @@ namespace lab5
         private System.Windows.Forms.Button chooseColorBtn;
         private Color paintColor;
         private List<Point> points;
+        private List<List<Point>> figures;
         private Vector<float> translate;
+        private bool wasFilled;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.NumericUpDown yInput;
         private System.Windows.Forms.NumericUpDown xInput;
