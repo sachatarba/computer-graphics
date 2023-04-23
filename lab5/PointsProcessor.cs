@@ -20,5 +20,17 @@ namespace lab5
 
             return lines;
         }
+
+        public static List<Segment> GetSegments(List<Point> points)
+        {
+            List<Segment> segments = new List<Segment>();
+
+            for (int i = 0; i < points.Count - 1; ++i)
+            {
+                segments.Add(new Segment(points[i], points[i + 1]));
+            }
+
+            return segments;
+        }
     }
 }

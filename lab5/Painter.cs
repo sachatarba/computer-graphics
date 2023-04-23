@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,39 +28,56 @@ namespace lab5
             int topBorder = points.Max(p => p.Y);
             int bottomBorder = points.Min(p => p.Y);
 
-            List<Line> edges = PointsProcessor.GetLines(points);
+            List<Segment> edges = PointsProcessor.GetSegments(points);
             List<Point> pointsOfIntersection = new List<Point>();
 
-            for (int y = topBorder; y >= bottomBorder; --y)
+            int temp = topBorder;
+            for (int y = topBorder - 2; y > bottomBorder; --y)
             {
-                Line scanningRow = new Line(new Point(leftBorder, y), new Point(rightBorder, y));
+                Segment scanningRow = new Segment(new Point(leftBorder, y), new Point(rightBorder, y));
 
-                foreach (Line edge in edges)
+                foreach (Segment edge in edges)
                 {
-                    if (!scanningRow.AreParallel(edge))
+                    if (scanningRow.Intersetcion(edge))
                     {
-                        pointsOfIntersection.Add(scanningRow.PointOfIntersection(edge));
+                        pointsOfIntersection.Add(scanningRow.PointOfIntersection(edge, y));
+                        
+                    }
+                    try
+                    {
+                        if (pointsOfIntersection[pointsOfIntersection.Count - 1].Y != y)
+                        {
+                            MessageBox.Show("eefafe");
+                        }
+
+                    }
+                    catch
+                    {
+
                     }
                 }
             }
 
             Pen pen = new Pen(color);
+            List<Point> sortedPoints = pointsOfIntersection.OrderBy(point => point.X).ToList();
+            int currentIntersection = 0;
 
-            for (int y = topBorder - 1; y > bottomBorder; --y)
+            for (int y = topBorder - 2; y > bottomBorder; --y)
             {
-                Line scanningRow = new Line(new Point(leftBorder, y), new Point(rightBorder, y));
+                //currentIntersection = 0;
+                Segment scanningRow = new Segment(new Point(leftBorder, y), new Point(rightBorder, y));
                 bool is_inside = false;
 
                 for (int x = leftBorder; x <= rightBorder; ++x) 
                 {
-                    if (pointsOfIntersection.Contains(new Point(x, y)))
+                    if (sortedPoints.Contains(new Point(x, y)))
                     {
                         is_inside = !is_inside;
                     }
 
                     if (is_inside)
                     {
-                        g.DrawEllipse(pen, x, y, 1, 1);
+                        g.DrawRectangle(pen, x, y, 1, 1);
                     }
                 }
             }

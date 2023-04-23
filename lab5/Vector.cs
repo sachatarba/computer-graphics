@@ -8,6 +8,11 @@
             Y = y;
         }
 
+        public static int VectorMult(Vector<int> a, Vector<int> b)
+        {
+            return a.X * b.Y - b.X * a.Y;
+        }
+
         public T X { get; set; }
         public T Y { get; set; }
     }

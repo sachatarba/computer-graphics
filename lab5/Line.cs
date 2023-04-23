@@ -30,7 +30,7 @@ namespace lab5
             C = -p1.X * (p2.Y - p1.Y) + p1.Y * (p2.X - p1.X);
         }
 
-        public Point PointOfIntersection(Line otherLine)
+        public Point PointOfIntersection(Line otherLine, int y)
         {
             if (AreParallel(otherLine))
             {
@@ -39,11 +39,17 @@ namespace lab5
 
             double d = Convert.ToDouble(A * otherLine.B - B * otherLine.A);
             double dx = Convert.ToDouble(-C * otherLine.B + B * otherLine.C);
-            double dy = Convert.ToDouble(-A * otherLine.C + C * otherLine.A);
+            //double dy = Convert.ToDouble(-A * otherLine.C + C * otherLine.A);
 
-            Point pt = new Point(Convert.ToInt32(dx / d), Convert.ToInt32(dy / d));
-
-            return pt;
+            try
+            {
+                Point pt = new Point(Convert.ToInt32(dx / d), y);
+                return pt;
+            }
+            catch
+            {
+                throw new Exception("Points are too clear");
+            }
         }
     }
 }
