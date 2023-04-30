@@ -437,9 +437,10 @@ namespace lab6
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Matura MT Script Capitals", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(9, 321);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(203, 22);
+            this.label6.Size = new System.Drawing.Size(155, 16);
             this.label6.TabIndex = 10;
             this.label6.Text = "Затравочный пиксель:";
             // 

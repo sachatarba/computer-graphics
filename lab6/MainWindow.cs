@@ -221,7 +221,12 @@ namespace lab6
                 //paintThread.Name = "Paint";
                 //paintThread.Start(g, new Point(0, 0), pointsOfLines, filledPoints, currentColorBtn.BackColor);
                 Painter.FillFIgureBySeedPoint(g, seedPoint, pointsOfLines, filledPoints, currentColorBtn.BackColor);
-                Painter.DrawLines(g, points, Color.Black);
+                //Painter.DrawLines(g, points, Color.Black);
+                foreach (List<Point> points in figures)
+                {
+                    //pointsOfLines.AddRange(Painter.DrawLines(e.Graphics, points, Color.Black));
+                    Painter.DrawPoints(g, points, Color.Black);
+                }
             }
             //Bitmap bitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
 
