@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Drawing;
 using System.Threading;
 
-namespace lab5
+namespace lab6
 {
     partial class MainWindow
     {
@@ -33,7 +32,6 @@ namespace lab5
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -62,6 +60,7 @@ namespace lab5
             this.обАвтореToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.закрытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -78,14 +77,15 @@ namespace lab5
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
             this.pictureBox1.Location = new System.Drawing.Point(277, -1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1161, 698);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox1_Paint);
+            this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseClick);
+            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
             // 
             // tableLayoutPanel1
             // 
@@ -198,6 +198,7 @@ namespace lab5
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.closeFigureBtn);
             this.groupBox2.Controls.Add(this.listPoints);
             this.groupBox2.Controls.Add(this.label4);
@@ -236,7 +237,7 @@ namespace lab5
             this.listPoints.HideSelection = false;
             this.listPoints.Location = new System.Drawing.Point(13, 112);
             this.listPoints.Name = "listPoints";
-            this.listPoints.Size = new System.Drawing.Size(247, 229);
+            this.listPoints.Size = new System.Drawing.Size(247, 200);
             this.listPoints.TabIndex = 8;
             this.listPoints.UseCompatibleStateImageBehavior = false;
             this.listPoints.View = System.Windows.Forms.View.List;
@@ -415,23 +416,32 @@ namespace lab5
             // обАвтореToolStripMenuItem
             // 
             this.обАвтореToolStripMenuItem.Name = "обАвтореToolStripMenuItem";
-            this.обАвтореToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.обАвтореToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.обАвтореToolStripMenuItem.Text = "Об авторе";
             this.обАвтореToolStripMenuItem.Click += new System.EventHandler(this.обАвтореToolStripMenuItem_Click);
             // 
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.справкаToolStripMenuItem.Text = "Справка";
             this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
             // 
             // закрытьToolStripMenuItem
             // 
             this.закрытьToolStripMenuItem.Name = "закрытьToolStripMenuItem";
-            this.закрытьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.закрытьToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.закрытьToolStripMenuItem.Text = "Закрыть";
             this.закрытьToolStripMenuItem.Click += new System.EventHandler(this.закрытьToolStripMenuItem_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 321);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(203, 22);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Затравочный пиксель:";
             // 
             // MainWindow
             // 
@@ -478,6 +488,9 @@ namespace lab5
         private bool wasFilled;
         private bool timeLocking;
         private Thread paintThread;
+        private List<Point> pointsOfLines;
+        private List<Point> filledPoints;
+        private Point seedPoint;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.NumericUpDown yInput;
         private System.Windows.Forms.NumericUpDown xInput;
@@ -499,6 +512,7 @@ namespace lab5
         private System.Windows.Forms.ToolStripMenuItem обАвтореToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem закрытьToolStripMenuItem;
+        private System.Windows.Forms.Label label6;
     }
 }
 

@@ -6,12 +6,13 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace lab5
+namespace lab6
 {
     public partial class MainWindow : Form
     {
@@ -23,11 +24,14 @@ namespace lab5
             figures = new List<List<Point>>();
             paintColor = Color.Green;
             translate = new Vector<float>(pictureBox1.Width / 2f, pictureBox1.Height / 2f);
+            pointsOfLines= new List<Point>();
+            filledPoints = new List<Point>();
+            seedPoint = new Point();
         }
 
         private void ChooseColorBtn_Click(object sender, EventArgs e)
         {
-            if (colorDialog1.ShowDialog() == DialogResult.Cancel) 
+            if (colorDialog1.ShowDialog() == DialogResult.Cancel)
             {
                 return;
             }
@@ -73,7 +77,7 @@ namespace lab5
             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
 
 
-            int i = - 2 * Convert.ToInt32(translate.X);
+            int i = -2 * Convert.ToInt32(translate.X);
 
             while (i * 50 < 2 * Convert.ToInt32(translate.X))
             {
@@ -103,15 +107,12 @@ namespace lab5
             e.Graphics.TranslateTransform(translate.X, translate.Y);
             e.Graphics.Clear(Color.White);
             DrawGrid(e.Graphics);
-            //Bitmap bitmap = pictureBox1.Image as Bitmap;
-            if (wasFilled)
+            
+            if (wasFilled)  
             {
-                //Thread fillingThread = new Thread(() => Painter.FillFigure(e.Graphics, points, paintColor));
-                //Thread fillingThread = new Thread(FillFigure);
-                //fillingThread.Start(e.Graphics);
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                FillFigure(e.Graphics);
+                Painter.FillFIgureBySeedPoint(e.Graphics, seedPoint, pointsOfLines, filledPoints, currentColorBtn.BackColor);
                 sw.Stop();
                 TimeSpan timeSpan = sw.Elapsed;
                 label5.Text = string.Format("Время закраски: {0:f3}с", timeSpan.TotalSeconds);
@@ -119,7 +120,7 @@ namespace lab5
 
             foreach (List<Point> points in figures)
             {
-                Painter.DrawLines(e.Graphics, points, Color.Black);
+                pointsOfLines.AddRange(Painter.DrawLines(e.Graphics, points, Color.Black));
                 Painter.DrawPoints(e.Graphics, points, Color.Black);
             }
 
@@ -145,7 +146,7 @@ namespace lab5
             }
             else
             {
-                MessageBox.Show("Точка уже была добавлена!","Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Точка уже была добавлена!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -179,15 +180,17 @@ namespace lab5
             points.Clear();
             figures.Clear();
             listPoints.Items.Clear();
+            filledPoints.Clear();
+            pointsOfLines.Clear();
             wasFilled = false;
-            pictureBox1.Refresh(); 
+            pictureBox1.Refresh();
         }
 
         void FillFigure(Graphics g)
         {
             //Graphics g = pictureBox1.CreateGraphics();
             //g.TranslateTransform(translate.X, translate.Y);
-            
+
             Painter.FillFigure(g, figures, paintColor);
         }
 
@@ -214,9 +217,11 @@ namespace lab5
                 Graphics g = pictureBox1.CreateGraphics();
                 g.TranslateTransform(translate.X, translate.Y);
                 //Thread fillFIgure = new Thread(FillFigure);
-                paintThread = new Thread(FillFigure);
-                paintThread.Name = "Paint";
-                paintThread.Start(g);
+                //paintThread = new Thread(Painter.FillFIgureBySeedPoint);
+                //paintThread.Name = "Paint";
+                //paintThread.Start(g, new Point(0, 0), pointsOfLines, filledPoints, currentColorBtn.BackColor);
+                Painter.FillFIgureBySeedPoint(g, seedPoint, pointsOfLines, filledPoints, currentColorBtn.BackColor);
+                Painter.DrawLines(g, points, Color.Black);
             }
             //Bitmap bitmap = new Bitmap(pictureBox1.Image.Width, pictureBox1.Image.Height);
 
@@ -256,6 +261,19 @@ namespace lab5
             {
                 Close();
             }
+        }
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            //seedPoint = new Point(, e.Y);
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            seedPoint = new Point(e.X - Convert.ToInt32(translate.X), e.Y - Convert.ToInt32(translate.Y));
+
+            label6.Text = $"Затравочный пиксель: ({e.X - Convert.ToInt32(translate.X)}, {e.Y - Convert.ToInt32(translate.Y)})";
+            points.Remove(seedPoint);
         }
     }
 }
