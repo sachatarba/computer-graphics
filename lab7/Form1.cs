@@ -25,6 +25,7 @@ namespace lab7
             resSegments = new List<(Point, Point, Color)>();
 
             translate = new Vector<float>(pictureBox1.Width / 2f, pictureBox1.Height / 2f);
+            points = new List<Point>();
         }
 
         void DrawGrid(Graphics g)
@@ -98,6 +99,14 @@ namespace lab7
             DrawGrid(e.Graphics);
 
 
+
+            foreach (var rect in rects)
+            {
+                Pen pen = new Pen(rect.Item3);
+                e.Graphics.DrawRectangle(pen, rect.Item1.X, rect.Item1.Y, rect.Item2.X,
+                    rect.Item2.Y);
+            }
+
             foreach (var segment in segments)
             {
                 Pen pen = new Pen(segment.Item3);
@@ -106,11 +115,12 @@ namespace lab7
                 //MessageBox.Show($"({segment.Item1.X} {segment.Item1.Y}); ({segment.Item2.X} {segment.Item2.Y})");
             }
 
-            foreach (var rect in rects)
+            foreach (var segment in resSegments)
             {
-                Pen pen = new Pen(rect.Item3);
-                e.Graphics.DrawRectangle(pen, rect.Item1.X, rect.Item1.Y, Math.Abs(rect.Item2.X - rect.Item1.X),
-                    Math.Abs(rect.Item2.Y - rect.Item1.Y));
+                Pen pen = new Pen(segment.Item3);
+                //Pen pen = new Pen(Color.Black);
+                e.Graphics.DrawLine(pen, segment.Item1, segment.Item2);
+                //MessageBox.Show($"({segment.Item1.X} {segment.Item1.Y}); ({segment.Item2.X} {segment.Item2.Y})");
             }
 
             // отрисовка результата
@@ -118,8 +128,8 @@ namespace lab7
 
         private void PainRectBtn_Click(object sender, EventArgs e)
         {
-            rects.Add((new Point(Convert.ToInt32(xRectLeftUp.Value), -Convert.ToInt32(xRectLeftUp.Value)),
-                new Point(Convert.ToInt32(xRectRightDown.Value), -Convert.ToInt32(yRectRightDown.Value)), rectColor));
+            rects.Add((new Point(Convert.ToInt32(xRectLeftUp.Value), -Convert.ToInt32(yRectLeftUp.Value)),
+                new Point(Convert.ToInt32(xRectRightDown.Value), Convert.ToInt32(yRectRightDown.Value)), rectColor));
 
             pictureBox1.Refresh();
         }
@@ -131,7 +141,29 @@ namespace lab7
 
         private void SolveTaskBtn_Click(object sender, EventArgs e)
         {
+            resSegments.AddRange(Algorithm.GetIntersectedLine(segments, new Rectangle(rects[0].Item1.X, rects[0].Item1.Y,
+                Math.Abs(rects[0].Item2.X), Math.Abs(rects[0].Item2.Y)), resColor));
 
+            pictureBox1.Refresh();
+        }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+         //   Point point = new Point(e.X - Convert.ToInt32(translate.X), e.Y - Convert.ToInt32(translate.Y));
+        }
+
+        private void PictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            Point point = new Point(e.X - Convert.ToInt32(translate.X), e.Y - Convert.ToInt32(translate.Y));
+
+            points.Add(point);
+
+            if (points.Count % 2 == 0 )
+            {
+                segments.Add((points[points.Count - 1], points[points.Count - 2], segmentColor));
+            }
+
+            pictureBox1.Refresh();
         }
     }
 }

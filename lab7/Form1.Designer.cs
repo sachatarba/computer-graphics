@@ -91,7 +91,9 @@ namespace lab7
             this.pictureBox1.Size = new System.Drawing.Size(914, 667);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox1_Paint);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseClick);
             // 
             // panel1
             // 
@@ -604,7 +606,8 @@ namespace lab7
         private List<(Point, Point, Color)> segments;
         private List<(Point, Point, Color)> rects;
         private List<(Point, Point, Color)> resSegments;
-        private Vector<float> translate; 
+        private Vector<float> translate;
+        private List<Point> points;
     }
 }
 
