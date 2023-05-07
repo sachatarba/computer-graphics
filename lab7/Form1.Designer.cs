@@ -83,13 +83,15 @@ namespace lab7
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(238, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(914, 667);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox1_Paint);
             // 
             // panel1
             // 
@@ -114,6 +116,7 @@ namespace lab7
             this.solveTaskBtn.TabIndex = 11;
             this.solveTaskBtn.Text = "Отсечь";
             this.solveTaskBtn.UseVisualStyleBackColor = true;
+            this.solveTaskBtn.Click += new System.EventHandler(this.SolveTaskBtn_Click);
             // 
             // groupBox5
             // 
@@ -133,7 +136,6 @@ namespace lab7
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Построение отсекателя";
-            this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
             // 
             // painRectBtn
             // 
@@ -143,6 +145,7 @@ namespace lab7
             this.painRectBtn.TabIndex = 10;
             this.painRectBtn.Text = "Построить отсекатель";
             this.painRectBtn.UseVisualStyleBackColor = true;
+            this.painRectBtn.Click += new System.EventHandler(this.PainRectBtn_Click);
             // 
             // yRectRightDown
             // 
@@ -187,7 +190,6 @@ namespace lab7
             this.xRectRightDown.Name = "xRectRightDown";
             this.xRectRightDown.Size = new System.Drawing.Size(52, 22);
             this.xRectRightDown.TabIndex = 8;
-            this.xRectRightDown.ValueChanged += new System.EventHandler(this.xRectRightDown_ValueChanged);
             // 
             // yRectLeftUp
             // 
@@ -450,7 +452,7 @@ namespace lab7
             this.resColorBtn.Size = new System.Drawing.Size(101, 23);
             this.resColorBtn.TabIndex = 1;
             this.resColorBtn.UseVisualStyleBackColor = false;
-            this.resColorBtn.Click += new System.EventHandler(this.resColorBtn_Click);
+            this.resColorBtn.Click += new System.EventHandler(this.ResColorBtn_Click);
             // 
             // label3
             // 
@@ -482,7 +484,7 @@ namespace lab7
             this.rectColorBtn.Size = new System.Drawing.Size(101, 23);
             this.rectColorBtn.TabIndex = 1;
             this.rectColorBtn.UseVisualStyleBackColor = false;
-            this.rectColorBtn.Click += new System.EventHandler(this.rectColorBtn_Click);
+            this.rectColorBtn.Click += new System.EventHandler(this.RectColorBtn_Click);
             // 
             // label2
             // 
@@ -505,7 +507,6 @@ namespace lab7
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Цвет отрезка";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // segmentColorBtn
             // 
@@ -515,7 +516,7 @@ namespace lab7
             this.segmentColorBtn.Size = new System.Drawing.Size(101, 23);
             this.segmentColorBtn.TabIndex = 1;
             this.segmentColorBtn.UseVisualStyleBackColor = false;
-            this.segmentColorBtn.Click += new System.EventHandler(this.segmentColorBtn_Click);
+            this.segmentColorBtn.Click += new System.EventHandler(this.SegmentColorBtn_Click);
             // 
             // label1
             // 
@@ -537,6 +538,7 @@ namespace lab7
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
@@ -602,6 +604,7 @@ namespace lab7
         private List<(Point, Point, Color)> segments;
         private List<(Point, Point, Color)> rects;
         private List<(Point, Point, Color)> resSegments;
+        private Vector<float> translate; 
     }
 }
 
