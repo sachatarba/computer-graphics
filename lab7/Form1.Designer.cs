@@ -114,7 +114,7 @@ namespace lab7
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Location = new System.Drawing.Point(-1, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(239, 640);
+            this.panel1.Size = new System.Drawing.Size(242, 640);
             this.panel1.TabIndex = 1;
             // 
             // button1
@@ -151,7 +151,7 @@ namespace lab7
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Location = new System.Drawing.Point(5, 434);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(230, 107);
+            this.groupBox5.Size = new System.Drawing.Size(234, 107);
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Построение отсекателя";
@@ -173,7 +173,7 @@ namespace lab7
             0,
             0,
             0});
-            this.yRectRightDown.Location = new System.Drawing.Point(179, 47);
+            this.yRectRightDown.Location = new System.Drawing.Point(180, 47);
             this.yRectRightDown.Maximum = new decimal(new int[] {
             999,
             0,
@@ -195,7 +195,7 @@ namespace lab7
             0,
             0,
             0});
-            this.xRectRightDown.Location = new System.Drawing.Point(122, 48);
+            this.xRectRightDown.Location = new System.Drawing.Point(120, 48);
             this.xRectRightDown.Maximum = new decimal(new int[] {
             999,
             0,
@@ -217,7 +217,7 @@ namespace lab7
             0,
             0,
             0});
-            this.yRectLeftUp.Location = new System.Drawing.Point(64, 49);
+            this.yRectLeftUp.Location = new System.Drawing.Point(62, 49);
             this.yRectLeftUp.Maximum = new decimal(new int[] {
             999,
             0,
@@ -258,27 +258,28 @@ namespace lab7
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(190, 29);
+            this.label8.Location = new System.Drawing.Point(173, 29);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 18);
+            this.label8.Size = new System.Drawing.Size(61, 18);
             this.label8.TabIndex = 3;
-            this.label8.Text = "Yпн";
+            this.label8.Text = "Высота";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(135, 29);
+            this.label9.Location = new System.Drawing.Point(110, 29);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(34, 18);
+            this.label9.Size = new System.Drawing.Size(61, 18);
             this.label9.TabIndex = 2;
-            this.label9.Text = "Xпн";
+            this.label9.Text = "Ширина";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(76, 29);
+            this.label10.Location = new System.Drawing.Point(70, 29);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(34, 18);
             this.label10.TabIndex = 1;
@@ -288,7 +289,7 @@ namespace lab7
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(18, 29);
+            this.label11.Location = new System.Drawing.Point(14, 29);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 18);
             this.label11.TabIndex = 0;

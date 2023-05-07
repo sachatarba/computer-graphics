@@ -185,5 +185,10 @@ namespace lab7
             MessageBox.Show("Программа, реализующая графический интерфейс для работы с алгоритмом отсечения Сазерленда-Коэна",
                 "Информация о задаче", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
