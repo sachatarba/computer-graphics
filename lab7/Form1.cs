@@ -117,7 +117,7 @@ namespace lab7
 
             foreach (var segment in resSegments)
             {
-                Pen pen = new Pen(segment.Item3);
+                Pen pen = new Pen(segment.Item3, 2);
                 //Pen pen = new Pen(Color.Black);
                 e.Graphics.DrawLine(pen, segment.Item1, segment.Item2);
                 //MessageBox.Show($"({segment.Item1.X} {segment.Item1.Y}); ({segment.Item2.X} {segment.Item2.Y})");
@@ -164,6 +164,26 @@ namespace lab7
             }
 
             pictureBox1.Refresh();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            points.Clear();
+            segments.Clear();
+            resSegments.Clear();
+            rects.Clear();
+            pictureBox1.Refresh();
+        }
+
+        private void информацияОбАвтореToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Тарба Александр ИУ7-45Б", "Автор", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void информацияОЗадачеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Программа, реализующая графический интерфейс для работы с алгоритмом отсечения Сазерленда-Коэна",
+                "Информация о задаче", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

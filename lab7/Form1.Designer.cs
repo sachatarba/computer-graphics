@@ -33,6 +33,7 @@ namespace lab7
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.solveTaskBtn = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.painRectBtn = new System.Windows.Forms.Button();
@@ -64,6 +65,10 @@ namespace lab7
             this.segmentColorBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.информацияОбАвтореToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.информацияОЗадачеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -79,6 +84,7 @@ namespace lab7
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -100,19 +106,30 @@ namespace lab7
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.solveTaskBtn);
             this.panel1.Controls.Add(this.groupBox5);
             this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Location = new System.Drawing.Point(-1, 0);
+            this.panel1.Location = new System.Drawing.Point(-1, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(239, 667);
+            this.panel1.Size = new System.Drawing.Size(239, 640);
             this.panel1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(35, 600);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(164, 25);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Очистка экрана";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // solveTaskBtn
             // 
-            this.solveTaskBtn.Location = new System.Drawing.Point(35, 590);
+            this.solveTaskBtn.Location = new System.Drawing.Point(35, 569);
             this.solveTaskBtn.Name = "solveTaskBtn";
             this.solveTaskBtn.Size = new System.Drawing.Size(164, 25);
             this.solveTaskBtn.TabIndex = 11;
@@ -503,7 +520,7 @@ namespace lab7
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox1.Controls.Add(this.segmentColorBtn);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(2, 12);
+            this.groupBox1.Location = new System.Drawing.Point(2, 53);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(233, 73);
             this.groupBox1.TabIndex = 2;
@@ -530,6 +547,40 @@ namespace lab7
             this.label1.TabIndex = 0;
             this.label1.Text = "Выбор цвета:";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1152, 28);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.информацияОбАвтореToolStripMenuItem,
+            this.информацияОЗадачеToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(65, 24);
+            this.toolStripMenuItem1.Text = "Меню";
+            // 
+            // информацияОбАвтореToolStripMenuItem
+            // 
+            this.информацияОбАвтореToolStripMenuItem.Name = "информацияОбАвтореToolStripMenuItem";
+            this.информацияОбАвтореToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.информацияОбАвтореToolStripMenuItem.Text = "Информация об авторе";
+            this.информацияОбАвтореToolStripMenuItem.Click += new System.EventHandler(this.информацияОбАвтореToolStripMenuItem_Click);
+            // 
+            // информацияОЗадачеToolStripMenuItem
+            // 
+            this.информацияОЗадачеToolStripMenuItem.Name = "информацияОЗадачеToolStripMenuItem";
+            this.информацияОЗадачеToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.информацияОЗадачеToolStripMenuItem.Text = "Информация о задаче";
+            this.информацияОЗадачеToolStripMenuItem.Click += new System.EventHandler(this.информацияОЗадачеToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -538,6 +589,8 @@ namespace lab7
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
@@ -561,7 +614,10 @@ namespace lab7
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -608,6 +664,11 @@ namespace lab7
         private List<(Point, Point, Color)> resSegments;
         private Vector<float> translate;
         private List<Point> points;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem информацияОбАвтореToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem информацияОЗадачеToolStripMenuItem;
     }
 }
 
